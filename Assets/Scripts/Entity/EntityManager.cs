@@ -10,13 +10,14 @@ public class EntityManager : MonoSingleton<EntityManager>
 {
     public PlayerEntity player;
 
-    private void Awake()
+    public void Init()
     {
 
     }
+
     private void Update()
     {
-
+        
     }
 
 
