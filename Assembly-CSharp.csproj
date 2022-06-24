@@ -99,10 +99,12 @@
     <Compile Include="Assets\Scripts\Core\SystemModule.cs" />
     <Compile Include="Assets\Scripts\Core\TypeUtilities.cs" />
     <Compile Include="Assets\Scripts\Data.cs" />
+    <Compile Include="Assets\Scripts\Entity\Children\ChildBase.cs" />
     <Compile Include="Assets\Scripts\Entity\Entity.cs" />
     <Compile Include="Assets\Scripts\Entity\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\GameMgr.cs" />
+    <Compile Include="Assets\Scripts\Procedure\StartTitleProcedure.cs" />
     <Compile Include="Assets\Scripts\Tool\AnimationUtil.cs" />
     <Compile Include="Assets\Scripts\Tool\AudioControl.cs" />
     <Compile Include="Assets\Scripts\Tool\BaseTool\CSV.cs" />
