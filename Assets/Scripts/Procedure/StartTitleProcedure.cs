@@ -11,6 +11,6 @@ public class StartTitleProcedure : ProcedureBase
     protected override void OnEnter(object args)
     {
         base.OnEnter(args);
-        //UIManager.
+        UIManager.Instance.Open("StartUI");
     }
 }

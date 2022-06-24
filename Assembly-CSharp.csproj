@@ -104,6 +104,7 @@
     <Compile Include="Assets\Scripts\Entity\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\GameMgr.cs" />
+    <Compile Include="Assets\Scripts\Procedure\BattleProcedure.cs" />
     <Compile Include="Assets\Scripts\Procedure\StartTitleProcedure.cs" />
     <Compile Include="Assets\Scripts\TestScript\DrawFireLine.cs" />
     <Compile Include="Assets\Scripts\Tool\AnimationUtil.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Assets\Scripts\Tool\UnityConverters\ValuesArray.cs" />
     <Compile Include="Assets\Scripts\Tool\Util\ExpressionParser.cs" />
     <Compile Include="Assets\Scripts\Tool\Util\JsonUtil.cs" />
+    <Compile Include="Assets\Scripts\UI\StartUI.cs" />
     <Compile Include="Assets\Scripts\Weapon\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Weapon\Gun\HG_HS2000.cs" />
     <Compile Include="Assets\Scripts\Weapon\Gun\HandGun.cs" />
