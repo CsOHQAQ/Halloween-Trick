@@ -21,9 +21,7 @@ public class Entity :MonoBehaviour
     }
 
 
-
-    private void Update()
-    {
+    public virtual void Update()    {
         if (curHealth <= 0)
         {
             DestroyImmediate(this.gameObject);
