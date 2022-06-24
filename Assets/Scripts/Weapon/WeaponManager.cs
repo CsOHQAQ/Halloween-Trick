@@ -9,6 +9,7 @@ public class WeaponManager : MonoBehaviour
 {
     public List<WeaponBase> EquipWeapon;
     public WeaponBase CurWeapon;
+
     public void Init()
     {
         EquipWeapon = new List<WeaponBase>();

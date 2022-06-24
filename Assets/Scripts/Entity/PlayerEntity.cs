@@ -20,11 +20,19 @@ public class PlayerEntity : Entity
         CurHealth = MaxHealth = tab.GetFloat("Character", "Player", "Health");
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
+      
+    }
+
+    private void Start()
+    {
+        this.GetComponent<WeaponManager>().Add("MachineGun");
     }
 
     public override void Update()
     {
-		base.Update();        if (Input.GetKey(KeyCode.A))
+        base.Update();
+
+        if (Input.GetKey(KeyCode.A))
         {
             transform.position += (Vector3)Vector2.left * MoveSpeed*Time.deltaTime;
         }
@@ -41,6 +49,7 @@ public class PlayerEntity : Entity
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
         }
 
+        this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // 自动开火 往鼠标方向
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {

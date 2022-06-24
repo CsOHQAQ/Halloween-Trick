@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using QxFramework.Utilities;
-public class WeaponData 
+public class WeaponData
 {
     [Tooltip("名称")]
     public string Name;
@@ -26,6 +26,12 @@ public class WeaponData
     public float BaseSpread;
     [Tooltip("开火模式")]
     protected FireMethod method;
+    //下面是魔改加的东西
+    [Tooltip("连续射击的次数")]
+    public int FireTimes;
+    [Tooltip("射击CD")]
+    public float FireCD;
+
     public FireMethod Method
     {
         get
@@ -40,13 +46,10 @@ public class WeaponData
         table.Add(Resources.Load<TextAsset>("Text/Table/"+Name).text);
         Pentration = table.GetFloat(Name, "Pentration","Data");
         StoppingPower=table.GetFloat(Name, "StoppingPower","Data");
-        Mass= table.GetFloat(Name, "Mass", "Data");
-        MaxAmmo= table.GetInt(Name, "MaxAmmo", "Data");
-        ReloadTime= table.GetFloat(Name, "ReloadTime", "Data");
-        BackForce= table.GetFloat(Name, "BackForce", "Data");
         ShotSpeed= table.GetFloat(Name, "ShotSpeed", "Data"); 
         BaseSpread= table.GetFloat(Name, "BaseSpread", "Data");
-
+        FireTimes = table.GetInt(Name, "FireTimes", "Data");
+        FireCD = table.GetFloat(Name, "FireCD", "Data");
     }
 }
 
