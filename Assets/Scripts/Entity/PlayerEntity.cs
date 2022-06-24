@@ -17,15 +17,14 @@ public class PlayerEntity : Entity
     {
         base.Init();
 
-        MaxHealth = tab.GetFloat("Character", "Player", "Health");
+        CurHealth = MaxHealth = tab.GetFloat("Character", "Player", "Health");
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
     }
 
-    private void Update()
+    public override void Update()
     {
-        base.Update();
-        if (Input.GetKey(KeyCode.A))
+		base.Update();        if (Input.GetKey(KeyCode.A))
         {
             transform.position += (Vector3)Vector2.left * MoveSpeed*Time.deltaTime;
         }
@@ -40,6 +39,12 @@ public class PlayerEntity : Entity
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
+        }
+
+        // 自动开火 往鼠标方向
+        for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
+        {
+            weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
     }
 }
