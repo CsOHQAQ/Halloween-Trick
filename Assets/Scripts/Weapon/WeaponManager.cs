@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Chronos;
 using QxFramework.Core;  
 /// <summary>
 /// Manager用来给外部提供一个调用的接口，在内部的各种base中最终实现该功能

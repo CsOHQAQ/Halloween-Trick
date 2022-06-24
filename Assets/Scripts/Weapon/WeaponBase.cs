@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Chronos;
 using QxFramework.Core;
 public class WeaponBase : MonoBehaviour
 {
@@ -9,15 +8,12 @@ public class WeaponBase : MonoBehaviour
     public bool CanShoot;
     private ParticleSystem GunSpark;
     private Transform shootPlace;
-    private Timeline time;
 
     private float FireCDCount;
     public virtual void Init()
     {
         shootPlace = transform.Find("ShootPlace");
         GunSpark = shootPlace.GetComponent<ParticleSystem>();
-        time = GetComponent<Timeline>();
-        time.globalClockKey = "InGame";
         CanShoot = true;
         FireCDCount = 0;
     }
@@ -25,7 +21,7 @@ public class WeaponBase : MonoBehaviour
     {
         if (FireCDCount > 0)
         {
-            FireCDCount -= time.fixedDeltaTime;
+            FireCDCount -= Time.fixedDeltaTime;
             if (FireCDCount <= 0)
             {
                 FireCDCount = 0;
@@ -88,8 +84,8 @@ public class WeaponBase : MonoBehaviour
 
     void FireDetect(Vector2 Target)
     {
-        BulletData bullet = new BulletData(data, shootPlace.position, Target, 
-            transform.parent.parent.gameObject.GetComponent<HumanBase>());
+        //BulletData bullet = new BulletData(data, shootPlace.position, Target, 
+           // transform.parent.parent.gameObject.GetComponent<HumanBase>());
 
         //Hit2D：正经的枪打出的射线检测
         RaycastHit2D[] hit2D = Physics2D.RaycastAll(shootPlace.position, Target - (Vector2)shootPlace.position, Vector2.Distance(shootPlace.position, Target));
@@ -114,88 +110,6 @@ public class WeaponBase : MonoBehaviour
         for (int i = 0; i < hit2D.Length; i++)
         {
             drawEndPosition = hit2D[i].point;
-            switch (LayerMask.LayerToName(hit2D[i].collider.gameObject.layer))
-            {
-                case "Obstacle":
-                    {
-                        Vector2 Px = new Vector2(1, 0);
-                        float angle = Vector2.Angle(Px, Target - (Vector2)shootPlace.position);
-                        double distance1 = Vector2.Distance(shootPlace.position, Target);
-                        double length1 = Vector2.Distance(shootPlace.position, hit2D[i].transform.position);
-                        ObstacleBase obs = hit2D[i].transform.GetComponent<ObstacleBase>();
-                        if (!obs.Intercept(ref bullet, distance1, length1, angle))
-                        {
-                            Debug.Log("从上面飘过去了");
-                            Debug.DrawLine(hit2D[i].point, DrawHit2D[DrawHit2D.Length - 1 - i].point, Color.red);   
-                        }
-                        else
-                        {
-                            DrawPosition[DrawPosition.Count - 1][1] = drawEndPosition;
-                            DrawPosition.Add(new Vector2[2] {DrawHit2D[DrawHit2D.Length-i-1].point,new Vector2() });
-                        }
-                        break;
-                    }
-                case "Detect":
-                    {
-                        if (bullet.Attacker.gameObject.layer == LayerMask.NameToLayer("Enemy")
-                            && hit2D[i].transform.gameObject.layer == LayerMask.NameToLayer("Enemy")) //敌人不将同类视为威胁
-                        {
-                            break;
-                        }
-                        
-                        AiBase target = hit2D[i].transform.gameObject.GetComponent<AiBase>(); //玩家不可能有这个东西(Bullet)
-                        target.TryAddThreaten(bullet.Attacker, bullet.StoppingPower * (2 - target.CurHp / target.MaxHp), 3);
-                        break;
-                    }
-                case "Player":
-                    {
-                        hit2D[i].transform.GetComponent<HumanBase>().BeingFired(ref bullet);
-                        break;
-                    }
-                case "Enemy":
-                    {
-                        hit2D[i].transform.GetComponent<HumanBase>().BeingFired(ref bullet);
-                        break;
-                    }
-                case "TeamMate":
-                    {
-                        hit2D[i].transform.GetComponent<HumanBase>().BeingFired(ref bullet);
-                        break;
-                    }
-                case "GridCheck":
-                    {
-
-                        break;
-                    }
-                default:
-                    {
-                        Debug.LogWarning("检测到的物体" + hit2D[i].transform.name + "并未定义！");
-                        break;
-                    }
-            }
-
-            //关于地图块威胁程度更改的内容
-            if (hit2D[i].collider.GetComponent<GridInfo>() != null)
-            {
-                hit2D[i].collider.GetComponent<GridInfo>().threatLeve += bullet.StoppingPower / 7; //测试 伤害/7
-            }
-            //IK 
-
-            if (bullet.StoppingPower <= 0 || bullet.Pentration <= 0)//子弹已走完
-            {
-                DrawPosition.RemoveAt(DrawPosition.Count - 1);
-                break;
-            }
-            if (i == hit2D.Length - 1)
-            {
-                DrawPosition[DrawPosition.Count - 1][1] = drawEndPosition;
-            }
-        }
-
-        foreach(Vector2[] pos in DrawPosition)
-        {
-            Debug.DrawLine(pos[0], pos[1]);
-            LineManager.Instance.SpawnLine(pos[0],pos[1],0.5f,"BulletTrail");
         }
     }
 }

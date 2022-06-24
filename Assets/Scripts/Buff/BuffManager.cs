@@ -1,20 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Chronos;
 public class BuffManager : MonoBehaviour
 {
-    public Timeline time;
     public  List<Buff> BuffList;
 
     private List<Buff> DisposeList;
-    public HumanBase human;
 
     public void Init()
     {
-        time = GetComponent<Timeline>();
-        human = GetComponent<HumanBase>();
-        time.globalClockKey = "InGame";
         BuffList = new List<Buff>();
         DisposeList = new List<Buff>();
     }

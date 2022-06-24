@@ -3,7 +3,6 @@ using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine;
 using QxFramework.Core;
-using Chronos;
 public class Buff 
 {
     public float LastingTime;//持续时间
@@ -39,7 +38,7 @@ public class Buff
     /// </summary>
     public virtual void Refresh()
     {
-        LastingTime -= buffManager.time.deltaTime;
+        LastingTime -= Time.deltaTime;
     }
     /// <summary>
     /// 当积累槽积满后触发效果
@@ -64,20 +63,6 @@ public class Buff
     /// </summary>
     public virtual void InitDataChange()
     {
-        foreach(var fieldName in tab.CollectKey1(this.GetType().Name))
-        {
-            FieldInfo field = this.buffManager.human.data.dataChanger.GetType().GetField(fieldName);
-            if (fieldName.ToString().Contains("Mul"))
-            {
-                Debug.Log("#Buff该字段" + fieldName + "为乘算");
-                field.SetValue(this.buffManager.human.data.dataChanger, (float)field.GetValue(this.buffManager.human.data.dataChanger) * tab.GetFloat(this.GetType().Name, fieldName, "Data"));
-            }
-            if (fieldName.ToString().Contains("Plu"))
-            {
-                Debug.Log("#Buff该字段" + fieldName + "为乘算");
-                field.SetValue(this.buffManager.human.data.dataChanger, (float)field.GetValue(this.buffManager.human.data.dataChanger) + tab.GetFloat(this.GetType().Name, fieldName, "Data"));
-            }
-        }
     }
 
     /// <summary>
@@ -85,19 +70,5 @@ public class Buff
     /// </summary>
     public virtual void CancelDataChange()
     {
-        foreach (var fieldName in tab.CollectKey1(this.GetType().Name))
-        {
-            FieldInfo field = this.buffManager.human.data.dataChanger.GetType().GetField(fieldName);
-            if (fieldName.ToString().Contains("Mul"))
-            {
-                Debug.Log("#Buff该字段" + fieldName + "为乘算");
-                field.SetValue(this.buffManager.human.data.dataChanger, (float)field.GetValue(this.buffManager.human.data.dataChanger) / tab.GetFloat(this.GetType().Name, fieldName, "Data"));
-            }
-            if (fieldName.ToString().Contains("Plu"))
-            {
-                Debug.Log("#Buff该字段" + fieldName + "为乘算");
-                field.SetValue(this.buffManager.human.data.dataChanger, (float)field.GetValue(this.buffManager.human.data.dataChanger) - tab.GetFloat(this.GetType().Name, fieldName, "Data"));
-            }
-        }
     }
 }
