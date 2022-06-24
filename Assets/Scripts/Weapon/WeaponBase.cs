@@ -59,20 +59,6 @@ public class WeaponBase : MonoBehaviour
         }
     }
 
-    public bool CanHit(Vector2 Target)
-    {
-        RaycastHit2D[] hit2D = Physics2D.RaycastAll(shootPlace.position, Target - (Vector2)shootPlace.position, Vector2.Distance(shootPlace.position, Target));
-
-        for (int i = 0; i < hit2D.Length; i++)
-        {
-            if (LayerMask.LayerToName(hit2D[i].collider.gameObject.layer) == "Obstacle")
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public void Reload()
     {
         data.CurAmmo = data.MaxAmmo;
