@@ -12,13 +12,8 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     public void Init()
     {
-
-    }
-
-    // 测试用
-    private void Awake()
-    {
-        player = GameObject.Find("TestPlayer").GetComponent<PlayerEntity>();
+        player = new PlayerEntity();
+        player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
     }
 
     private void Update()

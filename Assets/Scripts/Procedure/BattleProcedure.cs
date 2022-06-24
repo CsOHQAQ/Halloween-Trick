@@ -9,5 +9,12 @@ public class BattleProcedure : ProcedureBase
     {
         base.OnEnter(args);
         EntityManager.Instance.Init();
+        ResourceManager.Instance.Instantiate("Prefabs/Aimer");
+    }
+
+    protected override void OnLeave()
+    {
+        base.OnLeave();
+        GameObject.DestroyImmediate(GameObject.Find("Aimer"));
     }
 }

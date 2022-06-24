@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8172395872869326297}
   - component: {fileID: 8172395872869326296}
   - component: {fileID: 8172395872869326247}
+  - component: {fileID: 8225340474293244521}
   m_Layer: 5
   m_Name: StartUI
   m_TagString: Untagged
@@ -119,6 +120,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8225340474293244521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8172395872869326245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc45e33ab3c49204c996d371c75b68b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8172395873347284603
 GameObject:
   m_ObjectHideFlags: 0

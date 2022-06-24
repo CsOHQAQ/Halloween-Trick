@@ -10,7 +10,7 @@ public class StartUI : UIBase
         base.OnDisplay(args);
         GetComponent<Button>().onClick.AddListener(() =>
         {
-            ProcedureManager.Instance.ChangeTo<>
+            ProcedureManager.Instance.ChangeTo<BattleProcedure>();
         }
         );
     }
