@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using QxFramework.Core;
-public class StartTitleProcedure : ProcedureBase
+
+public class BattleProcedure : ProcedureBase
 {
-    protected override void OnInit()
-    {
-        base.OnInit();
-    }
     protected override void OnEnter(object args)
     {
         base.OnEnter(args);
-        UIManager.Instance.Open("StartUI");
+        EntityManager.Instance.Init();
     }
 }

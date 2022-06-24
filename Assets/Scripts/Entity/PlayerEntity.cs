@@ -24,6 +24,7 @@ public class PlayerEntity : Entity
 
     private void Update()
     {
+        base.Update();
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += (Vector3)Vector2.left * MoveSpeed*Time.deltaTime;
