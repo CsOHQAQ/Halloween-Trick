@@ -19,11 +19,3 @@ public class StartUI : UIBase
         base.OnClose();
     }
 }
-        }
-        );
-    }
-    protected override void OnClose()
-    {
-        base.OnClose();
-    }
-}

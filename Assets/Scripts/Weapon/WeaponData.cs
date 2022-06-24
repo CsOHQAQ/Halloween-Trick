@@ -20,7 +20,7 @@ public class WeaponData
     public float ReloadTime;
     [Tooltip("后坐力，影响准星扩散以及移动")]
     public float BackForce;
-    [Tooltip("射速，两次开火间的间隔")]
+    [Tooltip("子弹速度")]
     public float ShotSpeed;
     [Tooltip("基础扩散，影响子弹发散程度")]
     public float BaseSpread;
@@ -31,7 +31,8 @@ public class WeaponData
     public int FireTimes;
     [Tooltip("射击CD")]
     public float FireCD;
-
+    [Tooltip("射程")]
+    public float Range;
     public FireMethod Method
     {
         get
@@ -43,13 +44,14 @@ public class WeaponData
     public WeaponData(string Name)
     {
         table = new TableAgent();
-        table.Add(Resources.Load<TextAsset>("Text/Table/"+Name).text);
-        Pentration = table.GetFloat(Name, "Pentration","Data");
-        StoppingPower=table.GetFloat(Name, "StoppingPower","Data");
-        ShotSpeed= table.GetFloat(Name, "ShotSpeed", "Data"); 
-        BaseSpread= table.GetFloat(Name, "BaseSpread", "Data");
-        FireTimes = table.GetInt(Name, "FireTimes", "Data");
-        FireCD = table.GetFloat(Name, "FireCD", "Data");
+        table.Add(Resources.Load<TextAsset>("Text/Table/Weapon").text);
+        Pentration = table.GetFloat("Weapon", Name,"Pentration");
+        StoppingPower=table.GetFloat("Weapon", Name, "StoppingPower");
+        ShotSpeed= table.GetFloat("Weapon", Name, "ShotSpeed"); 
+        BaseSpread= table.GetFloat("Weapon", Name, "BaseSpread");
+        FireTimes = table.GetInt("Weapon", Name, "FireTimes");
+        FireCD = table.GetFloat("Weapon", Name, "FireCD");
+        Range=table.GetFloat("Weapon", Name, "Range");
     }
 }
 

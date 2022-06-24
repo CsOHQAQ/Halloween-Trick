@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 7661728182551359748}
   - component: {fileID: 7661728182551359747}
   - component: {fileID: 7661728182551359750}
-  m_Layer: 0
+  - component: {fileID: 4499586348964821711}
+  m_Layer: 8
   m_Name: TestPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,9 +96,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8a70586ee8b5ea46ab022bc4c2df3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 0
+  CurHealth: 0
   MaxHealth: 0
   MoveSpeed: 0
+  DPS: 0
   weaponManager: {fileID: 0}
 --- !u!114 &7661728182551359750
 MonoBehaviour:
@@ -113,3 +115,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EquipWeapon: []
   CurWeapon: {fileID: 0}
+--- !u!61 &4499586348964821711
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661728182551359746}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.013867199, y: -0.010785639}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.91945636, y: 0.88247716}
+  m_EdgeRadius: 0

@@ -6,18 +6,54 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 1;
     public Vector2 direction = Vector2.zero;
+    public Vector2 Start;
+    public float Range = 0;
+
     public string MasterName = "Player";
+    public int layer;
     public float Damage;
-    public float LifeTime = 2;
+    public float Pentration;
+
 
     private float TimeCounter = 0;
-    private void FixedUpdate()
-    {
-        if (TimeCounter <= LifeTime) TimeCounter += Time.deltaTime;
-        else Destroy(this.gameObject);
-    }
     void Update()
     {
         this.transform.Translate(direction.normalized * speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, Start) >= Range)
+        {
+            onDestory();
+        }
+    }
+    public void onDestory()
+    {
+        Destroy(gameObject);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (layer == 8)//开枪人是玩家
+        {
+            if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
+            {
+                collision.GetComponent<Entity>().CurHealth -= Damage;
+                collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
+                Pentration--;
+
+            }
+        }
+        if (layer == 9 || layer == 10)//开枪人是敌人
+        {
+            if (collision.gameObject.layer == 8)
+            {
+                collision.GetComponent<Entity>().CurHealth -= Damage;
+                collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
+                Pentration--;
+
+            }
+
+        }
+        if (Pentration <= 0)
+        {
+            onDestory();
+        }
     }
 }

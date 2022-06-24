@@ -25,7 +25,8 @@ public class PlayerEntity : Entity
 
     private void Start()
     {
-        this.GetComponent<WeaponManager>().Add("MachineGun");
+        //测试用
+        weaponManager.Add("ShotGun");
     }
 
     public override void Update()

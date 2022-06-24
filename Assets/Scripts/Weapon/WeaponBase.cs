@@ -8,8 +8,9 @@ public class WeaponBase : MonoBehaviour
     public bool CanShoot;
     private ParticleSystem GunSpark;
     private Transform shootPlace;
-
+    private float minIntervalAngle = 1;
     private float FireCDCount;
+    public WeaponManager manager;
     public virtual void Init()
     {
         shootPlace = transform.Find("ShootPlace");
@@ -42,13 +43,20 @@ public class WeaponBase : MonoBehaviour
             CanShoot = false;
             for(int i = 0; i < data.FireTimes; i++)
             {
-                float RandAngle=Random.Range(-data.BaseSpread,data.BaseSpread);
+                float dAngleRange = 2 * data.BaseSpread / data.FireTimes;
+                float RandAngle=Random.Range(dAngleRange*i-data.BaseSpread,dAngleRange*(i+1) - data.BaseSpread) +(i-data.FireTimes/2)*minIntervalAngle;
+                //Debug.Log(RandAngle);
                 Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet").GetComponent<Bullet>();
                 Vector2 StartPoint = (Vector2)(shootPlace.localPosition + this.transform.localPosition + this.transform.parent.position);
                 NewBullet.Damage = data.StoppingPower;
                 NewBullet.transform.position = StartPoint;
+                NewBullet.Start = StartPoint;
+                NewBullet.Range = data.Range;
                 NewBullet.speed = data.ShotSpeed;
                 NewBullet.direction = Target -StartPoint;
+
+                NewBullet.layer = manager.ent.gameObject.layer;
+
                 NewBullet.transform.RotateAround(StartPoint, Vector3.forward, RandAngle);
             }
             

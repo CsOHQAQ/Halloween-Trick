@@ -35,6 +35,7 @@ public class ChildBase : Entity
         }
 
         // 自动开火 往玩家方向
+        if(weaponManager!=null)
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {
             weaponManager.EquipWeapon[i].Fire(playerPos);
