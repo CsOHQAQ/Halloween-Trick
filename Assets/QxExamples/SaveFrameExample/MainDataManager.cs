@@ -12,7 +12,6 @@ public class MainDataManager : LogicModuleBase, IMainDataManager
         base.Init();
         if (!RegisterData(out _mainData))
         {
-            Debug.Log("!!!!!"+_mainData);
             InitMainData();
         }
     }

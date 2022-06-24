@@ -9,6 +9,6 @@ public class TitleProcedure : ProcedureBase {
     {
         AddSubmodule(new Titlemodule());
         base.OnEnter(args);
-        ChangeTo(Launcher.Instance.SecondProcedure);
+
     }
 }
