@@ -5,9 +5,10 @@ using QxFramework.Core;
 
 public class Entity :MonoBehaviour
 {
-    public float curHealth;
+    public float CurHealth;
     public float MaxHealth;
     public float MoveSpeed;
+    public float DPS;
     public WeaponManager weaponManager;
 
     private UIBase HealthSlideUI;
@@ -22,7 +23,7 @@ public class Entity :MonoBehaviour
 
 
     public virtual void Update()    {
-        if (curHealth <= 0)
+        if (CurHealth <= 0)
         {
             DestroyImmediate(this.gameObject);
 

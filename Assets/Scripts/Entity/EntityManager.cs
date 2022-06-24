@@ -15,6 +15,12 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     }
 
+    // 测试用
+    private void Awake()
+    {
+        player = GameObject.Find("GameObject").GetComponent<PlayerEntity>();
+    }
+
     private void Update()
     {
         
