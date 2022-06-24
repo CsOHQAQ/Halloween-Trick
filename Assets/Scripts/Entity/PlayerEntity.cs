@@ -20,6 +20,12 @@ public class PlayerEntity : Entity
         MaxHealth = tab.GetFloat("Character", "Player", "Health");
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
+      
+    }
+
+    private void Start()
+    {
+        this.GetComponent<WeaponManager>().Add("MachineGun");
     }
 
     private void Update()
@@ -40,5 +46,7 @@ public class PlayerEntity : Entity
         {
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
         }
+
+        this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }

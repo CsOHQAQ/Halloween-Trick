@@ -1,9 +1,7 @@
 ﻿HandGun,Data
 Pentration,1
 StoppingPower,5
-Mass,0
-MaxAmmo,0
-ReloadTime,0
-BackForce,0
-ShotSpeed,2
-Accuracy,3
+ShotSpeed,20
+BaseSpread,5
+FireTimes,1
+FireCD,1

@@ -104,12 +104,8 @@
     <Compile Include="Assets\Scripts\Entity\EntityManager.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\GameMgr.cs" />
-<<<<<<< HEAD
-    <Compile Include="Assets\Scripts\TestScript\DrawFireLine.cs" />
-    <Compile Include="Assets\Scripts\TestScript\PlayerMove.cs" />
-=======
     <Compile Include="Assets\Scripts\Procedure\StartTitleProcedure.cs" />
->>>>>>> 7d86ade8fb828566b54936221c200340cc0891ee
+    <Compile Include="Assets\Scripts\TestScript\DrawFireLine.cs" />
     <Compile Include="Assets\Scripts\Tool\AnimationUtil.cs" />
     <Compile Include="Assets\Scripts\Tool\AudioControl.cs" />
     <Compile Include="Assets\Scripts\Tool\BaseTool\CSV.cs" />
@@ -230,7 +226,12 @@
     <Compile Include="Assets\Scripts\Tool\UnityConverters\ValuesArray.cs" />
     <Compile Include="Assets\Scripts\Tool\Util\ExpressionParser.cs" />
     <Compile Include="Assets\Scripts\Tool\Util\JsonUtil.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Weapon\Gun\HG_HS2000.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Gun\HandGun.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Gun\MachineGun.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Gun\ShotGun.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Gun\SubMachineGun.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponBase.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponData.cs" />
     <Compile Include="Assets\Scripts\Weapon\WeaponManager.cs" />
@@ -260,6 +261,7 @@
       <HintPath>S:/UnityEditor/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.ARModule">
+      <HintPath>S:/UnityEditor/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AccessibilityModule">
       <HintPath>S:/UnityEditor/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll</HintPath>

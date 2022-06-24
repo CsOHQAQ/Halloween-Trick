@@ -13,7 +13,7 @@ public class WeaponBase : MonoBehaviour
     public virtual void Init()
     {
         shootPlace = transform.Find("ShootPlace");
-        GunSpark = shootPlace.GetComponent<ParticleSystem>();
+        //GunSpark = shootPlace.GetComponent<ParticleSystem>();
         CanShoot = true;
         FireCDCount = 0;
     }
@@ -36,20 +36,23 @@ public class WeaponBase : MonoBehaviour
     /// </summary>
     public bool Fire(Vector2 Target)
     {
-        if (data.CurAmmo > 0 && CanShoot)
+        if (CanShoot)
         {
-            FireCDCount = 6f / data.ShotSpeed;
-            data.CurAmmo--;
+            FireCDCount = data.FireCD;
             CanShoot = false;
-            /*
-            bullet=ResourceManager.Instance.Instantiate("Prefabs/Bullet/Bullet").GetComponent<Bullet>();
-            bullet.transform.position = shootPlace.position;
-            bullet.Init(data.Pentration,data.StoppingPower,shootPlace.transform.position,Target);
-            bullet.time.rigidbody2D.velocity=((Target - (Vector2)shootPlace.position).normalized*1000);
-            Destroy(bullet.gameObject, Vector2.Distance(shootPlace.position, Target) / bullet.time.rigidbody2D.velocity.magnitude);
-            */
-            FireDetect(Target);
-            GunSpark.Play();
+            for(int i = 0; i < data.FireTimes; i++)
+            {
+                float RandAngle=Random.Range(-data.BaseSpread,data.BaseSpread);
+                Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet").GetComponent<Bullet>();
+                Vector2 StartPoint = (Vector2)(shootPlace.localPosition + this.transform.localPosition + this.transform.parent.position);
+                NewBullet.Damage = data.StoppingPower;
+                NewBullet.transform.position = StartPoint;
+                NewBullet.speed = data.ShotSpeed;
+                NewBullet.direction = Target -StartPoint;
+                NewBullet.transform.RotateAround(StartPoint, Vector3.forward, RandAngle);
+            }
+            
+            //GunSpark.Play();
             return true;
         }
         else
