@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class EntityManager : MonoSingleton<EntityManager>
 {
+    public PlayerEntity player;
 
     private void Awake()
     {
@@ -17,5 +18,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     {
 
     }
+
+
 
 }
