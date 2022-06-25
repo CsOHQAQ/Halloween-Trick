@@ -7,6 +7,9 @@ public class PlayerEntity : Entity
     public float HealBatteryRange=5;
     public float HealBatterySpeed=15;
 
+    private bool IsThrow = true;
+    private Animator animator;
+
     public override void Init()
     {
         base.Init();
@@ -20,31 +23,47 @@ public class PlayerEntity : Entity
     }
     private void Start()
     {
+        animator = GetComponent<Animator>();
     }
 
     public override void Update()
     {
         base.Update();
+        animator.SetBool("IsThrow",IsThrow);
+        animator.SetBool("IsStay", true);
+        if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x - this.transform.position.x < 0) this.GetComponent<SpriteRenderer>().flipX = true;
+        else this.GetComponent<SpriteRenderer>().flipX = false;
 
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += (Vector3)Vector2.left * MoveSpeed * Time.deltaTime;
+            animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += (Vector3)Vector2.right * MoveSpeed * Time.deltaTime;
+            animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += (Vector3)Vector2.up * MoveSpeed * Time.deltaTime;
+            animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
+            animator.SetBool("IsStay", false);
+        }
+
+        //测试按E关闭开火
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            IsThrow = !IsThrow;
         }
 
         // this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // 自动开火 往鼠标方向
+        if(IsThrow)
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {
             weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
