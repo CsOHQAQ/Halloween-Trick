@@ -39,7 +39,7 @@ public class ChildKing : ChildBase
     {
         if (collision.gameObject.layer == 9) // 创到其他小朋友 直接创死
         {
-            
+            collision.GetComponent<Entity>().BeforeDestroy();
         }
         else if (collision.gameObject.layer == 8) // 创到玩家 造成DPS的伤害
         {
