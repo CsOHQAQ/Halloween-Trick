@@ -11,6 +11,15 @@ public class WeaponBase : MonoBehaviour
     private float minIntervalAngle = 1;
     private float FireCDCount;
     public WeaponManager manager;
+    public BulletType bulletType;//子弹的种类
+
+    public enum BulletType
+    {
+        Normal,
+        Tissue,
+        Egg,
+        Tomato
+    }
     public virtual void Init()
     {
         shootPlace = transform.Find("ShootPlace");
@@ -49,7 +58,8 @@ public class WeaponBase : MonoBehaviour
                 float dAngleRange = 2 * Data.BaseSpread / Data.FireTimes;
                 float RandAngle=Random.Range(dAngleRange*i-Data.BaseSpread,dAngleRange*(i+1) - Data.BaseSpread) +(i-(int)Data.FireTimes/2)*minIntervalAngle;
                 //Debug.Log(RandAngle);
-                Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet").GetComponent<Bullet>();
+                Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet_"+bulletType).GetComponent<Bullet>();
+                NewBullet.BulletType = bulletType;
                 Vector2 StartPoint = (Vector2)(shootPlace.localPosition + this.transform.localPosition + this.transform.parent.position);
                 NewBullet.Damage = Data.StoppingPower;
                 NewBullet.transform.position = StartPoint;

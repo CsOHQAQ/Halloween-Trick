@@ -11,12 +11,12 @@ public class LogicModuleBase
 
     protected bool RegisterData<T>(out T data, string key = "Default") where T : GameDataBase, new()
     {
-        return Data.Instance.InitData<T>(out data, key);
+        return App.Common.Data.Instance.InitData<T>(out data, key);
     }
 
     protected void SetModify<T>(T data, string key = "Default") where T : GameDataBase, new()
     {
-        Data.Instance.SetModify<T>(data, this, key);
+        App.Common.Data.Instance.SetModify<T>(data, this, key);
     }
 
     public virtual void Awake()

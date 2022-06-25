@@ -13,5 +13,6 @@ public class PumpkinChild : ChildBase
         data.DPS = tab.GetFloat("Character", "PumpkinChild", "DPS");
         attackDistance = tab.GetFloat("Character", "PumpkinChild", "AttackDistance");
         weaponManager.Add("ChPumpkin");
+        weaponManager.CurWeapon.bulletType = WeaponBase.BulletType.Tissue;
     }
 }

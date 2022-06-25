@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2140478384795113756}
   - component: {fileID: 134359481223149539}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: Bullet_Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,6 +31,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5020831732461171170}
+  - {fileID: 1854624250892397347}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -73,12 +74,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 6566341438952775323, guid: 2eb4327b3d3d9ce4ea95725b8b90699d,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 0.3, y: 0.3}
+  m_Size: {x: 0.4, y: 0.4}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -105,6 +107,7 @@ MonoBehaviour:
     type: 3}
   LeftThings: {fileID: 3512118617200765870, guid: 271608ef9f9191d41a596fe544e41f0d,
     type: 3}
+  BulletType: 0
   MasterName: Player
   layer: 0
   Damage: 0
@@ -125,6 +128,90 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!1 &4992299243182094632
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1854624250892397347}
+  - component: {fileID: 1631791084506475037}
+  m_Layer: 0
+  m_Name: Freeform Light 2D
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1854624250892397347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992299243182094632}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2140478384795113754}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1631791084506475037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4992299243182094632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 0.2
+  m_LightVolumeOpacity: 0.21
+  m_ApplyToSortingLayers: 00000000
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.54128134, y: -0.4724872, z: 0}
+  - {x: 0.000859499, y: -0.025985625, z: 0}
+  - {x: 0.028380036, y: -0.17730634, z: 0}
+  - {x: 0.049021244, y: -0.025985613, z: 0}
+  - {x: 0.6995264, y: -0.47248706, z: 0}
+  - {x: 0.07654202, y: -0.019107241, z: 0}
+  - {x: 0.27606845, y: 0.035918146, z: 0}
+  - {x: 0.0834223, y: 0.06343102, z: 0}
+  - {x: 0.47247934, y: 0.5412694, z: 0}
+  - {x: 0.00085926056, y: 0.06343148, z: 0}
+  - {x: -0.0129009485, y: 0.35231638, z: 0}
+  - {x: -0.0129009485, y: 0.12533519, z: 0}
+  - {x: -0.6444849, y: 0.6581989, z: 0}
+  - {x: -0.040421844, y: 0.042796515, z: 0}
+  - {x: -0.30875063, y: 0.022162009, z: 0}
+  - {x: -0.05418229, y: 0.0015274845, z: 0}
 --- !u!1 &5162447007558760200
 GameObject:
   m_ObjectHideFlags: 0

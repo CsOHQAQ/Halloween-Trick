@@ -50,9 +50,9 @@ namespace EventLogicSystem
 
 #endif
             //如果有现成的表格
-            if (Data.Instance.TableAgent != null)
+            if (App.Common.Data.Instance.TableAgent != null)
             {
-                _table = Data.Instance.TableAgent;
+                _table = App.Common.Data.Instance.TableAgent;
                 return;
             }
 

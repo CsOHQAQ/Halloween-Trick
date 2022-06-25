@@ -12,5 +12,6 @@ public class EggChild : ChildBase
         data.DPS = tab.GetFloat("Character", "EggChild", "DPS");
         attackDistance = tab.GetFloat("Character", "EggChild", "AttackDistance");
         weaponManager.Add("ChEgg");
+        weaponManager.CurWeapon.bulletType = WeaponBase.BulletType.Egg;
     }
 }
