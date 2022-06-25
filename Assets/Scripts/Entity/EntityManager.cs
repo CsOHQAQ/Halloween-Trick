@@ -88,11 +88,11 @@ public class EntityManager : MonoSingleton<EntityManager>
         }
         while (totalDiff < maxDiff);
 
-        ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
-        ent.Init();
-        x = RandNormalDistribution(spawnPos.x, 2);
-        y = RandNormalDistribution(spawnPos.y, 2);
-        ent.transform.position = new Vector3(x, y);
+        //ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
+        //ent.Init();
+        //x = RandNormalDistribution(spawnPos.x, 2);
+        //y = RandNormalDistribution(spawnPos.y, 2);
+        //ent.transform.position = new Vector3(x, y);
     }
 
     public void AddEnergy(Entity ent)

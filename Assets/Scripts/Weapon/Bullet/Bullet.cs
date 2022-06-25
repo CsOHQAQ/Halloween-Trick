@@ -8,6 +8,9 @@ public class Bullet : MonoBehaviour
     public Vector2 direction = Vector2.zero;
     public Vector2 Start;
     public float Range = 0;
+    public float ColorChangeSpeed=50;
+    public GameObject NewEffect,
+                                    LeftThings;
 
     public string MasterName = "Player";
     public int layer;
@@ -16,8 +19,54 @@ public class Bullet : MonoBehaviour
 
 
     private float TimeCounter = 0;
+    private Color32 selfColor;
+    private float TransValue = 125;
+
+    private void Awake()
+    {
+        if (this.transform.GetChild(0).GetComponent<TrailRenderer>() != null)
+        {
+            switch (Random.Range(1, 6))
+            {
+                case 1:
+                    selfColor= new Color32((byte)255, (byte)0, (byte)0, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    
+                    break;
+                case 2:
+                    selfColor=new Color32((byte)255, (byte)255, (byte)0, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    break;
+                case 3:
+                    selfColor=new Color32((byte)0, (byte)255, (byte)0, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    break;
+                case 4:
+                    selfColor=new Color32((byte)0, (byte)255, (byte)255, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    break;
+                case 5:
+                    selfColor=new Color32((byte)0, (byte)0, (byte)255, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    break;
+                case 6:
+                    selfColor=new Color32((byte)255, (byte)0, (byte)255, (byte)TransValue);
+                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    break;
+            }
+            this.transform.GetChild(0).GetComponent<TrailRenderer>().endColor = selfColor;
+        }
+    }
+
     void Update()
     {
+       
         this.transform.Translate(direction.normalized * speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, Start) >= Range)
         {
@@ -39,7 +88,12 @@ public class Bullet : MonoBehaviour
                 collision.GetComponent<Entity>().Data.CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
                 Pentration--;
-
+                GameObject newEffect = GameObject.Instantiate(NewEffect);
+                GameObject newLeft = GameObject.Instantiate(LeftThings);
+                newLeft.transform.position=newEffect.transform.position = this.transform.position;
+                newLeft.GetComponent<SpriteRenderer>().color = selfColor;
+                newEffect.GetComponent<ParticleSystem>().startColor=selfColor;
+                Destroy(newEffect, 2);
             }
         }
         else if (layer == 9 || layer == 10)//开枪人是敌人
@@ -49,7 +103,12 @@ public class Bullet : MonoBehaviour
                 collision.GetComponent<Entity>().Data.CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
                 Pentration--;
-
+                GameObject newEffect = GameObject.Instantiate(NewEffect);
+                GameObject newLeft = GameObject.Instantiate(LeftThings);
+                newLeft.transform.position = newEffect.transform.position = this.transform.position;
+                newLeft.GetComponent<SpriteRenderer>().color = selfColor;
+                newEffect.GetComponent<ParticleSystem>().startColor = selfColor;
+                Destroy(newEffect, 2);
             }
 
         }
