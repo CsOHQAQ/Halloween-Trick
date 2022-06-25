@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ChildBase : Entity
 {
-    private readonly float attackDistance = 1.5f; // 帧伤攻击距离
+    public float attackDistance;
     private Animator animator;
 
     public override void Init()
@@ -14,6 +14,7 @@ public class ChildBase : Entity
         data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
         data.MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
         data.DPS = tab.GetFloat("Character", "BaseChild", "DPS");
+        attackDistance = tab.GetFloat("Character", "BaseChild", "AttackDistance");
         animator = this.transform.GetComponent<Animator>();
     }
 

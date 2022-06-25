@@ -132,5 +132,6 @@ public enum EntityType
     EggChild,
     PumpkinChild,
     TomatoChild,
+    ChildKing,
     empty
 }

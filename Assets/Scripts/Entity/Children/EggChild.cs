@@ -10,6 +10,7 @@ public class EggChild : ChildBase
         data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "EggChild", "Health");
         data.MoveSpeed = tab.GetFloat("Character", "EggChild", "MoveSpeed");
         data.DPS = tab.GetFloat("Character", "EggChild", "DPS");
+        attackDistance = tab.GetFloat("Character", "EggChild", "AttackDistance");
         weaponManager.Add("ChEgg");
     }
 }

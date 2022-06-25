@@ -76,7 +76,7 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         do
         {
-            randRow = Random.Range(0, 15);
+            randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
             childType = (string)spawnData[randRow, 0];
             difficulty = (float)spawnData[randRow, 1];
             ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
@@ -87,6 +87,12 @@ public class EntityManager : MonoSingleton<EntityManager>
             totalDiff += difficulty;
         }
         while (totalDiff < maxDiff);
+
+        ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
+        ent.Init();
+        x = RandNormalDistribution(spawnPos.x, 2);
+        y = RandNormalDistribution(spawnPos.y, 2);
+        ent.transform.position = new Vector3(x, y);
     }
 
     public void AddEnergy(Entity ent)
