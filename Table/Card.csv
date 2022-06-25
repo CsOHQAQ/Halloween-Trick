@@ -1,0 +1,2 @@
+﻿Card,Name,Cost,Description,ImgPath,Skill,//ID 共4位，前两位表示卡牌的种类，后两位是卡牌对应等级
+1001,精准射击Mod1,20,在把眼镜擦得更干净一些之后，糖果能扔的更准了！,,,
