@@ -11,6 +11,8 @@ public class EntityManager : MonoSingleton<EntityManager>
     public PlayerEntity player;
     public List<Entity> allEntities;
     private float count;
+    //protected TableAgent spawnTab;
+    protected object[,] spawnData; //[行数, 数据类型(0-Type 1-Difficulty)
 
     /// <summary>
     /// 返回一个给定范围?的服从正态分布的随机数
@@ -37,6 +39,12 @@ public class EntityManager : MonoSingleton<EntityManager>
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
         player.Init();
+
+        // 初始化小孩生成
+        TableAgent spawnTab = new TableAgent();
+        spawnTab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/ChildSpawn").text);
+        System.Type[] types = { typeof(string), typeof(float) };
+        spawnData = spawnTab.GetAllEntries("ChildSpawn", types);
     }
 
     private void Update()
@@ -46,20 +54,33 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             Debug.Log("生成人物");
             count =0;
-            SpawnEnemy(OutScreenPosition(), 15);
+            SpawnEnemy(OutScreenPosition(), 20);
         }
     }
 
 
-    public void SpawnEnemy(Vector2 spawnPos,int spawnNum)
+    public void SpawnEnemy(Vector2 spawnPos,int maxDiff)
     {
-        for(int i = 0; i < spawnNum; i++)
+        float totalDiff = 0;
+        int randRow;
+        float x, y;
+        string childType;
+        float difficulty;
+        Entity ent;
+
+        do
         {
-            float x = RandNormalDistribution(spawnPos.x, 2), y = RandNormalDistribution(spawnPos.y, 2);
-            Entity ent= ResourceManager.Instance.Instantiate("Prefabs/Children/PumpkinChild").GetComponent<Entity>();
+            randRow = Random.Range(0, 15);
+            childType = (string)spawnData[randRow, 0];
+            difficulty = (float)spawnData[randRow, 1];
+            ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
             ent.Init();
+            x = RandNormalDistribution(spawnPos.x, 2);
+            y = RandNormalDistribution(spawnPos.y, 2);
             ent.transform.position = new Vector3(x, y);
+            totalDiff += difficulty;
         }
+        while (totalDiff < maxDiff);
     }
 
     public Vector2 OutScreenPosition()

@@ -287,6 +287,71 @@ public class TableAgent
     }
 
     /// <summary>
+    /// 获取一行的元素
+    /// </summary>
+    /// <returns></returns>
+    public object[] GetRowEntries(string name, int row, Type[] types)
+    {
+        List<string> key1s = CollectKey1(name);
+        List<string> key2s = CollectKey2(name);
+        object[] ret = new object[key2s.Count];
+
+        if (row <= key1s.Count && row > 0 && types.Length == key2s.Count)
+        {
+            for (int i = 0; i < key2s.Count; i++)
+            {
+                if (types[i] == typeof(float))
+                {
+                    ret[i] = GetFloat(name, key1s[row - 1], key2s[i]);
+                }
+                else if (types[i] == typeof(int))
+                {
+                    ret[i] = GetInt(name, key1s[row - 1], key2s[i]);
+                }
+                else if (types[i] == typeof(string))
+                {
+                    ret[i] = GetString(name, key1s[row - 1], key2s[i]);
+                }
+            }
+            return ret;
+        }
+        return null;
+    }
+
+    /// <summary>
+    /// 获取整个表所有的元素 用二维数组储存
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="rowTypes"></param>
+    /// <returns></returns>
+    public object[,] GetAllEntries(string name, Type[] rowTypes)
+    {
+        List<string> key1s = CollectKey1(name);
+        List<string> key2s = CollectKey2(name);
+        object[,] ret = new object[key1s.Count, key2s.Count];
+
+        for (int i = 0; i < key1s.Count; i++)
+        {
+            for (int j = 0; j < key2s.Count; j++)
+            {
+                if (rowTypes[j] == typeof(float))
+                {
+                    ret[i, j] = GetFloat(name, key1s[i], key2s[j]);
+                }
+                else if (rowTypes[j] == typeof(int))
+                {
+                    ret[i, j] = GetInt(name, key1s[i], key2s[j]);
+                }
+                else if (rowTypes[j] == typeof(string))
+                {
+                    ret[i, j] = GetString(name, key1s[i], key2s[j]);
+                }
+            }
+        }
+        return ret;
+    }
+
+    /// <summary>
     /// 获取所有Key1值
     /// </summary>
     /// <param name="name">The name.</param>
