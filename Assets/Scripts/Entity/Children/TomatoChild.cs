@@ -13,5 +13,6 @@ public class TomatoChild : ChildBase
         data.DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
         attackDistance = tab.GetFloat("Character", "TomatoChild", "AttackDistance");
         weaponManager.Add("ChTomato");
+        weaponManager.CurWeapon.bulletType = WeaponBase.BulletType.Tomato;
     }
 }
