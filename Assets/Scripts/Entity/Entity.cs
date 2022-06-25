@@ -14,6 +14,7 @@ public class Entity :MonoBehaviour
 
     private UIBase healthSlideUI;
     protected TableAgent tab;
+
     public virtual void Init()
     {
         tab = new TableAgent();
@@ -41,6 +42,4 @@ public class Entity :MonoBehaviour
 
         }
     }
-
-
 }

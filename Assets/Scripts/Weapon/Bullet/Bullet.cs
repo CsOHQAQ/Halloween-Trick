@@ -42,9 +42,9 @@ public class Bullet : MonoBehaviour
 
             }
         }
-        else if ((layer == 9 || layer == 10) && collision.isTrigger)//开枪人是敌人
+        else if (layer == 9 || layer == 10)//开枪人是敌人
         {
-            if (collision.gameObject.layer == 8)
+            if (collision.gameObject.layer == 8 && collision.isTrigger)
             {
                 collision.GetComponent<Entity>().CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
