@@ -28,13 +28,13 @@ public class DamageBattery : Entity
     public override void Init()
     {
         base.Init();
-        GetComponent<CircleCollider2D>().radius = DetectionRadius;
         CurHealth = MaxHealth = tab.GetFloat("Character", "DamageBattery", "Health");
         DetectionRadius = tab.GetFloat("Character", "DamageBattery", "DetectionRadius");
         HPS = tab.GetFloat("Character", "DamageBattery", "HPS");
         DPS= tab.GetFloat("Character", "DamageBattery", "DPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
 
+        GetComponent<CircleCollider2D>().radius = DetectionRadius;
         DrawDetectionCircle();
         collisionPool = new List<GameObject>();
     }
@@ -49,23 +49,30 @@ public class DamageBattery : Entity
         }
         else
         {
-
             CurHealth -= HPS * Time.deltaTime;
         }
+        /*
+        foreach (var i in collisionPool)
+        {
+            if (i.GetComponent<Entity>() != null && i.layer ==9||i.layer==10)
+            {
+                Debug.Log("对" + i.GetHashCode() + "伤害中");
+                i.GetComponent<Entity>().CurHealth -= DPS * Time.deltaTime;
+            }
+        }
+        */
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collisionPool.Add(collision.gameObject);
+        Debug.Log(collisionPool.Count);
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach (var i in collisionPool)
+        if (collision.GetComponent<Entity>() != null && collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
         {
-            if (i.GetComponent<Entity>() != null && i.layer != 8)
-            {
-                Debug.Log("对"+i.name+"伤害中");
-                i.GetComponent<Entity>().CurHealth -= DPS * Time.deltaTime;
-            }
+            //Debug.Log("对" + collision.GetHashCode() + "伤害中");
+            collision.GetComponent<Entity>().CurHealth -= DPS * Time.deltaTime;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
