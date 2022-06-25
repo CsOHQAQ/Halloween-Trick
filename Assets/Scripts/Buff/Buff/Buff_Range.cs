@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_StopPower : WeaponBuffBase
+public class Buff_Range : WeaponBuffBase
 {
-    public Buff_StopPower(float pcntIndex)
+    public Buff_Range(float pcntIndex)
     {
         buffChanger = new WeaponDataChanger();
-        buffChanger.stopPowerPcnt = pcntIndex;
+        buffChanger.rangePlu = pcntIndex;
     }
 }

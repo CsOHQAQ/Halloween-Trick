@@ -9,22 +9,22 @@ public class WeaponBuffBase : Buff
     public override void InitDataChange()
     {
         buffManager.weaponChanger.pentrationPlu += buffChanger.pentrationPlu;
-        buffManager.weaponChanger.stopPowerMul*= buffChanger.stopPowerMul;
-        buffManager.weaponChanger.shotSpeedMul *= buffChanger.shotSpeedMul;
+        buffManager.weaponChanger.stopPowerPcnt += buffChanger.stopPowerPcnt;
+        buffManager.weaponChanger.shotSpeedPcnt += buffChanger.shotSpeedPcnt;
         buffManager.weaponChanger.baseSpreadMul *= buffChanger.baseSpreadMul;
         buffManager.weaponChanger.fireTimesPlu += buffChanger.fireTimesPlu;
         buffManager.weaponChanger.fireCDMul *= buffChanger.fireCDMul;
-        buffManager.weaponChanger.rangeMul *= buffChanger.rangeMul;
+        buffManager.weaponChanger.rangePlu += buffChanger.rangePlu;
     }
     public override void CancelDataChange()
     {
         base.CancelDataChange();
         buffManager.weaponChanger.pentrationPlu -= buffChanger.pentrationPlu;
-        buffManager.weaponChanger.stopPowerMul /= buffChanger.stopPowerMul;
-        buffManager.weaponChanger.shotSpeedMul /= buffChanger.shotSpeedMul;
+        buffManager.weaponChanger.stopPowerPcnt -= buffChanger.stopPowerPcnt;
+        buffManager.weaponChanger.shotSpeedPcnt -= buffChanger.shotSpeedPcnt;
         buffManager.weaponChanger.baseSpreadMul /= buffChanger.baseSpreadMul;
         buffManager.weaponChanger.fireTimesPlu -= buffChanger.fireTimesPlu;
         buffManager.weaponChanger.fireCDMul /= buffChanger.fireCDMul;
-        buffManager.weaponChanger.rangeMul /= buffChanger.rangeMul;
+        buffManager.weaponChanger.rangePlu -= buffChanger.rangePlu;
     }
 }
