@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Buff_Pentration : Buff
+public class Buff_Pentration : WeaponBuffBase
 {
-    public int AddNum = 0;
-    public override void InitDataChange()
+    public Buff_Pentration(int AddNum)
     {
-        buffManager.weaponChanger.pentrationPlu += AddNum;
-    }
-    public override void CancelDataChange()
-    {
-        buffManager.weaponChanger.pentrationPlu -= AddNum;
+        buffChanger = new WeaponDataChanger();
+        buffChanger.pentrationPlu = AddNum;
     }
 }

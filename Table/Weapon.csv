@@ -1,8 +1,8 @@
 ﻿Weapon,Pentration,StoppingPower,ShotSpeed,BaseSpread,FireTimes,FireCD,Range
-HandGun,1,5,7,5,1,1,5
-MachineGun,1,5,5,5,2,0.3,10
-ShotGun,1,5,6,50,5,2,6
-SubMachineGun,1,5,8,15,1,0.1,8
+HandGun,1,5,7,5,1,1,7
+MachineGun,1,5,5,5,2,0.3,15
+ShotGun,1,5,6,50,5,2,10
+SubMachineGun,1,5,8,15,1,0.1,13
 ChEgg,1,5,7,5,1,1,5
 ChPumpkin,1,10,7,5,1,1.5,8
 ChTomato,1,6,6,50,3,3,6

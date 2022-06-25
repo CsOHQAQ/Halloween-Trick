@@ -60,8 +60,7 @@ public class PlayerEntity : Entity
     private void TestBuff()
     {
         //测试部分
-        Buff_Pentration testBuff = new Buff_Pentration();
-        testBuff.AddNum = 3;
+        Buff_Pentration testBuff = new Buff_Pentration(3);
         buffManager.AddBuff(testBuff, 5);
     }
 }
