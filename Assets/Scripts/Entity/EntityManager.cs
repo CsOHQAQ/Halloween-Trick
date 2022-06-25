@@ -36,6 +36,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         allEntities = new List<Entity>();
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
+        player.Init();
     }
 
     private void Update()
@@ -45,7 +46,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             Debug.Log("生成人物");
             count =0;
-            SpawnEnemy(OutScreenPosition(), 5);
+            SpawnEnemy(OutScreenPosition(), 15);
         }
     }
 

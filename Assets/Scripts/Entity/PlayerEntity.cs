@@ -9,24 +9,15 @@ public class PlayerEntity : Entity
     {
         base.Init();
         MaxHealth = tab.GetFloat("Character", "Player", "Health");
+        CurHealth = MaxHealth;
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
-    }
-
-    private void Awake()
-    {
-        base.Init();
-
-        CurHealth = MaxHealth = tab.GetFloat("Character", "Player", "Health");
-        MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
-
-      
-    }
-
-    private void Start()
-    {
         //测试用
         weaponManager.Add("ShotGun");
+
+    }
+    private void Start()
+    {
     }
 
     public override void Update()
@@ -56,5 +47,21 @@ public class PlayerEntity : Entity
         {
             weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
+
+
+        //测试部分
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("测试buff");
+            TestBuff();
+        }
+    }
+
+    private void TestBuff()
+    {
+        //测试部分
+        Buff_Pentration testBuff = new Buff_Pentration();
+        testBuff.AddNum = 3;
+        buffManager.AddBuff(testBuff, 5);
     }
 }

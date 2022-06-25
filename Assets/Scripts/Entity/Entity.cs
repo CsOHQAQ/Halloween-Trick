@@ -31,6 +31,7 @@ public class Entity :MonoBehaviour
 
 
     public virtual void Update()    {
+
         if (CurHealth <= 0)
         {
             UIManager.Instance.Close(healthSlideUI);

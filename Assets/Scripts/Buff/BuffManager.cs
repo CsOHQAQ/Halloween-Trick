@@ -47,6 +47,7 @@ public class BuffManager : MonoBehaviour
     //这个需要填写添加buff的种类与所加buff的积累值
     public void AddBuff(Buff buff,float AddTime,float AddCount=0)
     {
+        /*
         foreach(var b in BuffList)
         {
             if (b.GetType() ==buff.GetType() )
@@ -58,7 +59,7 @@ public class BuffManager : MonoBehaviour
                 return;
             }
         }
-
+        */
         buff.SetManager(this);
         buff.Count = AddCount;
         buff.LastingTime = AddTime;
