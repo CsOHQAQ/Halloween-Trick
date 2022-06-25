@@ -13,4 +13,9 @@ public class StartTitleProcedure : ProcedureBase
         base.OnEnter(args);
         UIManager.Instance.Open("StartUI");
     }
+    protected override void OnLeave()
+    {
+        base.OnLeave();
+        UIManager.Instance.Close("StartUI");
+    }
 }

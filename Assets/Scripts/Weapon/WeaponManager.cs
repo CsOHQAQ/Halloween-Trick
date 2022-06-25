@@ -9,7 +9,7 @@ public class WeaponManager : MonoBehaviour
 {
     public List<WeaponBase> EquipWeapon;
     public WeaponBase CurWeapon;
-
+    public Entity ent;
     public void Init()
     {
         EquipWeapon = new List<WeaponBase>();
@@ -46,7 +46,10 @@ public class WeaponManager : MonoBehaviour
         {
             GameObject g = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Gun/"+Name,transform);
             CurWeapon = g.GetComponent<WeaponBase>();
+            CurWeapon.manager = this;
+
             CurWeapon.Init();
+
             EquipWeapon.Add(CurWeapon);
         }
     }

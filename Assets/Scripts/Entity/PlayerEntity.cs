@@ -25,7 +25,8 @@ public class PlayerEntity : Entity
 
     private void Start()
     {
-        this.GetComponent<WeaponManager>().Add("MachineGun");
+        //测试用
+        weaponManager.Add("ShotGun");
     }
 
     public override void Update()
@@ -54,6 +55,17 @@ public class PlayerEntity : Entity
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {
             weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject newOne = ResourceManager.Instance.Instantiate("Prefabs/Battery/NormalBattery");
+            newOne.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition)+new Vector3(0,0,10);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            GameObject newOne = ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
+            newOne.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
         }
     }
 }
