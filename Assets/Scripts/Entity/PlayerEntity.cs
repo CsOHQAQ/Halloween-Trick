@@ -4,7 +4,6 @@ using UnityEngine;
 using QxFramework.Core;
 public class PlayerEntity : Entity
 {
-
     public override void Init()
     {
         base.Init();
@@ -72,10 +71,5 @@ public class PlayerEntity : Entity
         //测试部分
         Buff_Pentration testBuff = new Buff_Pentration(3);
         buffManager.AddBuff(testBuff, 5);
-    }
-
-    private void SpeedSlowDown()
-    {
-
     }
 }
