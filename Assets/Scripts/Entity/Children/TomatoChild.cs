@@ -7,6 +7,7 @@ public class TomatoChild : ChildBase
     public override void Init()
     {
         base.Init();
+        type = EntityType.TomatoChild;
         data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
         data.MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
         data.DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
