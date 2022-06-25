@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Buff_BaseSpread : WeaponBuffBase
 {
-    public Buff_BaseSpread(int mulIndex)
+    public Buff_BaseSpread(float mulIndex)
     {
         buffChanger = new WeaponDataChanger();
         buffChanger.shotSpeedPcnt *= mulIndex;
