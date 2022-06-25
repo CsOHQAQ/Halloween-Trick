@@ -118,14 +118,14 @@ public class WeaponBase : MonoBehaviour
         {
             get
             {
-                return data.StoppingPower * changer.stopPowerPcnt;
+                return data.StoppingPower * (1 + changer.stopPowerPcnt);
             }
         }
         public float ShotSpeed
         {
             get
             {
-                return data.ShotSpeed * changer.shotSpeedPcnt; 
+                return data.ShotSpeed * (1 + changer.shotSpeedPcnt); 
             }
         }
         public float BaseSpread
@@ -153,7 +153,7 @@ public class WeaponBase : MonoBehaviour
         {
             get
             {
-                return data.Range * changer.rangePlu;
+                return data.Range * (1 + changer.rangePcnt);
             }
         }
     }

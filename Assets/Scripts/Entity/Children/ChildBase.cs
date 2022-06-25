@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class ChildBase : Entity
 {
-    private readonly float attackDistance = 1f; // 帧伤攻击距离
+    private readonly float attackDistance = 1.5f; // 帧伤攻击距离
 
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "BaseChild", "DPS");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "BaseChild", "DPS");
     }
 
     public override void Update()
@@ -21,12 +21,12 @@ public class ChildBase : Entity
         Vector2 playerPos = EntityManager.Instance.player.transform.position;
 
         // 向玩家靠近
-        transform.position = Vector3.MoveTowards(transform.position, playerPos, MoveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, playerPos, Data.MoveSpeed * Time.deltaTime);
 
         // 如果和玩家距离小于等于帧伤攻击距离 对玩家造成帧伤
         if (Vector2.Distance(transform.position, playerPos) <= attackDistance)
         {
-            EntityManager.Instance.player.CurHealth -= DPS * Time.deltaTime;
+            EntityManager.Instance.player.Data.CurHealth -= Data.DPS * Time.deltaTime;
         }
 
         // 自动开火 往玩家方向

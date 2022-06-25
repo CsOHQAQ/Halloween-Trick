@@ -7,9 +7,9 @@ public class PumpkinChild : ChildBase
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "PumpkinChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "PumpkinChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "PumpkinChild", "DPS");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "PumpkinChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "PumpkinChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "PumpkinChild", "DPS");
         weaponManager.Add("ChPumpkin");
     }
 }
