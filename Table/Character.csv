@@ -4,3 +4,6 @@ BaseChild,5,1,10,,,
 NormalBattery,100,,,3,,10
 SlowBattery,100,,,5,0.2,50
 DamageBattery,100,,1,4,,20
+EggChild,5,1,10,,,
+PumpkinChild,10,0.5,20,,,
+TomatoChild,5,1,8,,,

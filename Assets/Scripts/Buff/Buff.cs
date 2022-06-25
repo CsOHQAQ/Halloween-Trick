@@ -18,19 +18,17 @@ public class Buff
 
     protected BuffManager buffManager;
 
-    private TableAgent tab;
     public void SetManager(BuffManager bm)
     {
         buffManager = bm;
     }
+
     /// <summary>
     /// 初始化buff
     /// </summary>
     public virtual void Init()
     {
         Debug.Log("#Buff" + this.ToString());
-        tab = new TableAgent();
-        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/" + this.ToString()).text);
         InitDataChange();
     }
     /// <summary>

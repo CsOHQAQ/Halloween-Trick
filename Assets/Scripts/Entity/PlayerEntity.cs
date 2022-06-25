@@ -9,24 +9,15 @@ public class PlayerEntity : Entity
     {
         base.Init();
         MaxHealth = tab.GetFloat("Character", "Player", "Health");
+        CurHealth = MaxHealth;
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
-    }
-
-    private void Awake()
-    {
-        base.Init();
-
-        CurHealth = MaxHealth = tab.GetFloat("Character", "Player", "Health");
-        MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
-
-      
-    }
-
-    private void Start()
-    {
         //测试用
         weaponManager.Add("ShotGun");
+
+    }
+    private void Start()
+    {
     }
 
     public override void Update()
@@ -50,7 +41,7 @@ public class PlayerEntity : Entity
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
         }
 
-        this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        // this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // 自动开火 往鼠标方向
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {
@@ -67,5 +58,19 @@ public class PlayerEntity : Entity
             GameObject newOne = ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
             newOne.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
         }
+
+        //测试部分
+        if (Input.GetKeyDown(KeyCode.U))
+        {
+            Debug.Log("测试buff");
+            TestBuff();
+        }
+    }
+
+    private void TestBuff()
+    {
+        //测试部分
+        Buff_Pentration testBuff = new Buff_Pentration(3);
+        buffManager.AddBuff(testBuff, 5);
     }
 }

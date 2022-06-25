@@ -10,6 +10,8 @@ public class Entity :MonoBehaviour
     public float MoveSpeed;
     public float DPS;
     public WeaponManager weaponManager;
+    public BuffManager buffManager;
+
     private UIBase healthSlideUI;
     protected TableAgent tab;
     public virtual void Init()
@@ -19,6 +21,9 @@ public class Entity :MonoBehaviour
         weaponManager = GetComponent<WeaponManager>();
         if (weaponManager != null)
             weaponManager.ent = this;
+        buffManager = GetComponent<BuffManager>();
+        buffManager.ent = this;
+        buffManager.Init();
         healthSlideUI = new HealthSildeUI();
         healthSlideUI = UIManager.Instance.Open("HealthSlide");
         healthSlideUI.GetComponent<HealthSildeUI>().ent = this;
@@ -26,6 +31,7 @@ public class Entity :MonoBehaviour
 
 
     public virtual void Update()    {
+
         if (CurHealth <= 0)
         {
             UIManager.Instance.Close(healthSlideUI);

@@ -54,8 +54,4 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
-    public void Reload()
-    {
-        CurWeapon.Reload();
-    }
 }
