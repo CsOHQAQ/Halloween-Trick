@@ -4,9 +4,9 @@ using UnityEngine;
 using QxFramework.Core;
 public class WeaponBase : MonoBehaviour
 {
-    public WeaponData data;
+    public WeaponData data;//这个是未计算buff的，不要直接调用
+    public WeaponDataBuffed Data;
     public bool CanShoot;
-    private ParticleSystem GunSpark;
     private Transform shootPlace;
     private float minIntervalAngle = 1;
     private float FireCDCount;
@@ -14,9 +14,12 @@ public class WeaponBase : MonoBehaviour
     public virtual void Init()
     {
         shootPlace = transform.Find("ShootPlace");
-        //GunSpark = shootPlace.GetComponent<ParticleSystem>();
         CanShoot = true;
         FireCDCount = 0;
+        Data = new WeaponDataBuffed();
+        Data.changer = manager.ent.buffManager.weaponChanger;
+        Data.data = data;
+
     }
     public void FixedUpdate()
     {
@@ -39,22 +42,22 @@ public class WeaponBase : MonoBehaviour
     {
         if (CanShoot)
         {
-            FireCDCount = data.FireCD;
+            FireCDCount = Data.FireCD;
             CanShoot = false;
-            for(int i = 0; i < data.FireTimes; i++)
+            for(int i = 0; i < Data.FireTimes; i++)
             {
-                float dAngleRange = 2 * data.BaseSpread / data.FireTimes;
-                float RandAngle=Random.Range(dAngleRange*i-data.BaseSpread,dAngleRange*(i+1) - data.BaseSpread) +(i-data.FireTimes/2)*minIntervalAngle;
+                float dAngleRange = 2 * Data.BaseSpread / Data.FireTimes;
+                float RandAngle=Random.Range(dAngleRange*i-Data.BaseSpread,dAngleRange*(i+1) - Data.BaseSpread) +(i-(int)Data.FireTimes/2)*minIntervalAngle;
                 //Debug.Log(RandAngle);
                 Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet").GetComponent<Bullet>();
                 Vector2 StartPoint = (Vector2)(shootPlace.localPosition + this.transform.localPosition + this.transform.parent.position);
-                NewBullet.Damage = data.StoppingPower;
+                NewBullet.Damage = Data.StoppingPower;
                 NewBullet.transform.position = StartPoint;
                 NewBullet.Start = StartPoint;
-                NewBullet.Range = data.Range;
-                NewBullet.speed = data.ShotSpeed;
+                NewBullet.Range = Data.Range;
+                NewBullet.speed = Data.ShotSpeed;
                 NewBullet.direction = Target -StartPoint;
-
+                NewBullet.Pentration = Data.Pentration;
                 NewBullet.layer = manager.ent.gameObject.layer;
 
                 NewBullet.transform.RotateAround(StartPoint, Vector3.forward, RandAngle);
@@ -68,15 +71,6 @@ public class WeaponBase : MonoBehaviour
             return false;
 
         }
-    }
-
-    public void Reload()
-    {
-        data.CurAmmo = data.MaxAmmo;
-    }
-    public void Reload(int bulletNum)
-    {
-        data.CurAmmo += bulletNum;
     }
 
     void FireDetect(Vector2 Target)
@@ -109,4 +103,59 @@ public class WeaponBase : MonoBehaviour
             drawEndPosition = hit2D[i].point;
         }
     }
+    public class WeaponDataBuffed
+    {
+        public WeaponData data;
+        public WeaponDataChanger changer;
+        public int Pentration
+        {
+            get
+            {
+                return data.Pentration + changer.pentrationPlu;
+            }
+        }
+        public float StoppingPower
+        {
+            get
+            {
+                return data.StoppingPower * changer.stopPowerMul;
+            }
+        }
+        public float ShotSpeed
+        {
+            get
+            {
+                return data.ShotSpeed * changer.shotSpeedMul; 
+            }
+        }
+        public float BaseSpread
+        {
+            get
+            {
+                return data.BaseSpread * changer.baseSpreadMul;
+            }
+        }
+        public float FireTimes
+        {
+            get
+            {
+                return data.FireTimes + changer.fireTimesPlu;
+            }
+        }
+        public float FireCD
+        {
+            get
+            {
+                return data.FireCD * changer.fireCDMul;
+            }
+        }
+        public float Range
+        {
+            get
+            {
+                return data.Range * changer.rangeMul;
+            }
+        }
+    }
 }
+

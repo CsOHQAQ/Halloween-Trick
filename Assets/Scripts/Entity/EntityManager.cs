@@ -38,6 +38,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         allEntities = new List<Entity>();
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
+        player.Init();
 
         // 初始化小孩生成
         TableAgent spawnTab = new TableAgent();

@@ -6,8 +6,8 @@ public class WeaponData
 {
     [Tooltip("名称")]
     public string Name;
-    [Tooltip("穿透力，对障碍物的穿透能力")]
-    public float Pentration;
+    [Tooltip("穿透力，能射穿几个人")]
+    public int Pentration;
     [Tooltip("停滞力，对人物的杀伤力")]
     public float StoppingPower;
     [Tooltip("质量，影响携带者移速")]
@@ -45,7 +45,7 @@ public class WeaponData
     {
         table = new TableAgent();
         table.Add(Resources.Load<TextAsset>("Text/Table/Weapon").text);
-        Pentration = table.GetFloat("Weapon", Name,"Pentration");
+        Pentration = table.GetInt("Weapon", Name,"Pentration");
         StoppingPower=table.GetFloat("Weapon", Name, "StoppingPower");
         ShotSpeed= table.GetFloat("Weapon", Name, "ShotSpeed"); 
         BaseSpread= table.GetFloat("Weapon", Name, "BaseSpread");

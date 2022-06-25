@@ -6,8 +6,8 @@ public class MachineGun : WeaponBase
 {
     public override void Init()
     {
-        base.Init();
         data = new WeaponData("MachineGun");
 
+        base.Init();
     }
 }

@@ -6,11 +6,19 @@ public class BuffManager : MonoBehaviour
     public  List<Buff> BuffList;
 
     private List<Buff> DisposeList;
+    public Entity ent;
+
+    public WeaponDataChanger weaponChanger;
+    public EntityDataChanger entityChanger;
 
     public void Init()
     {
         BuffList = new List<Buff>();
         DisposeList = new List<Buff>();
+        weaponChanger = new WeaponDataChanger();
+        entityChanger = new EntityDataChanger();
+        weaponChanger = new WeaponDataChanger();
+        entityChanger = new EntityDataChanger();
     }
     protected virtual void FixedUpdate()
     {
@@ -39,6 +47,7 @@ public class BuffManager : MonoBehaviour
     //这个需要填写添加buff的种类与所加buff的积累值
     public void AddBuff(Buff buff,float AddTime,float AddCount=0)
     {
+        /*
         foreach(var b in BuffList)
         {
             if (b.GetType() ==buff.GetType() )
@@ -50,7 +59,7 @@ public class BuffManager : MonoBehaviour
                 return;
             }
         }
-
+        */
         buff.SetManager(this);
         buff.Count = AddCount;
         buff.LastingTime = AddTime;
@@ -90,27 +99,37 @@ public class BuffManager : MonoBehaviour
 
 }
 
-public class DataChanger
+public class WeaponDataChanger
 {
     //变量名以mul结尾表示乘算，plu表示加算
-    public float HealthPlu;
-    public float AccMul;
-    public float MoveSpeedMul;    
-    public float EudRecoverSpeedMul;    
-    public float HealSpeedMul;
-    public float ReloadSpeedMul;
-    public float AccuracyMul;
-    public float AimSpeedMul;
-    public DataChanger()
+    public int pentrationPlu;
+    public float stopPowerMul;
+    public float shotSpeedMul;
+    public float baseSpreadMul;
+    public float fireTimesPlu;
+    public float fireCDMul;
+    public float rangeMul;
+    public WeaponDataChanger()
     {
-        MoveSpeedMul = 1;
-        HealthPlu = 0;
-        EudRecoverSpeedMul = 1;
-        AccMul = 1;
-        HealSpeedMul = 1;
-        ReloadSpeedMul = 1;
-        AccuracyMul = 1;
-        AimSpeedMul = 1;
+        pentrationPlu = 0;
+        stopPowerMul = 1;
+        shotSpeedMul = 1;
+        baseSpreadMul = 1; 
+        fireTimesPlu = 0;
+        fireCDMul = 1;
+        rangeMul = 1;
 
+    }
+}
+public class EntityDataChanger
+{
+    //变量名以mul结尾表示乘算，plu表示加算
+    public float maxHealthMul;
+    public float moveSpeedMul;
+
+    public EntityDataChanger()
+    {
+        maxHealthMul = 1;
+        moveSpeedMul = 1;
     }
 }
