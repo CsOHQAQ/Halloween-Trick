@@ -37,9 +37,13 @@ public class Entity :MonoBehaviour
         {
             UIManager.Instance.Close(healthSlideUI);
             Debug.Log("准备摧毁");
-            Destroy(healthSlideUI.gameObject);
-            Destroy(this.gameObject);
-
+            if(healthSlideUI != null) Destroy(healthSlideUI.gameObject,2f);
+            if(healthSlideUI!=null) healthSlideUI.gameObject.SetActive(false);
+            if (this.GetComponent<Animator>() != null) this.GetComponent<Animator>().SetBool("IsDead", true);
+            Destroy(this.gameObject,2f);
+            this.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.transform.GetComponent<BoxCollider2D>().isTrigger = true;
+            if (this.transform.GetComponent<CircleCollider2D>()) this.transform.GetComponent<CircleCollider2D>().isTrigger = true;
         }
     }
 }
