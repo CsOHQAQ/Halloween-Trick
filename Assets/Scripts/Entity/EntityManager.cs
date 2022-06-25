@@ -115,7 +115,7 @@ public class EntityManager : MonoSingleton<EntityManager>
                 }
             case 4:
                 {
-                    x = RandNormalDistribution(right+5, 1);
+                    x = RandNormalDistribution(right + 5, 1);
                     y = Random.value * (down - up);
                     break;
                 }
