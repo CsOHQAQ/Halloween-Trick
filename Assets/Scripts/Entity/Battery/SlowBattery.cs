@@ -34,21 +34,23 @@ public class SlowBattery : Entity
         PowerRate = tab.GetFloat("Character", "SlowBattery", "PowerRate");
         HPS = tab.GetFloat("Character", "SlowBattery", "HPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
-        collisionPool = new List<GameObject>();
-    }
-    private void Awake()
-    {
-        Init();
         GetComponent<CircleCollider2D>().radius = DetectionRadius;
-    }
-    private void Start()
-    {
         DrawDetectionCircle();
+        collisionPool = new List<GameObject>();
     }
     public override void Update()
     {
         base.Update();
-        CurHealth -= HPS * Time.deltaTime;
+        if (Vector2.Distance(transform.position, EntityManager.Instance.player.transform.position) <= EntityManager.Instance.player.HealBatteryRange)
+        {
+            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
+
+        }
+        else
+        {
+
+            CurHealth -= HPS * Time.deltaTime;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
