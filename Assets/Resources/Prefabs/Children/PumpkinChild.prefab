@@ -100,10 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2f055e11f919d4587117889eda22b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurHealth: 0
-  MaxHealth: 0
-  MoveSpeed: 0
-  DPS: 0
   weaponManager: {fileID: 0}
   buffManager: {fileID: 0}
 --- !u!50 &4669824688752488801
@@ -155,9 +151,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.007056117, y: -0.6066395}
+  m_Offset: {x: 0, y: -0.4}
   serializedVersion: 2
-  m_Radius: 0.37405598
+  m_Radius: 0.38
 --- !u!61 &6018380192635577419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +167,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.014111996, y: -0.39737225}
+  m_Offset: {x: -0.02, y: -0.30678976}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +178,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.94131184, y: 1.2564871}
+  m_Size: {x: 1.2744215, y: 1.601285}
   m_EdgeRadius: 0
 --- !u!114 &5952089023809234848
 MonoBehaviour:

@@ -23,7 +23,7 @@ public class ChildBase : Entity
         Vector2 playerPos = EntityManager.Instance.player.transform.position;
 
         // 向玩家靠近
-        if (CurHealth > 0)
+        if (Data.CurHealth > 0)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerPos, Data.MoveSpeed * Time.deltaTime);
         }

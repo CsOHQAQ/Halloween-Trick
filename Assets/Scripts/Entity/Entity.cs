@@ -104,3 +104,13 @@ public class EntityDataBuffed
     public float MoveSpeed => data.MoveSpeed * (1 + changer.moveSpeedPcnt);
     public float DPS => data.DPS * (1 + changer.DPSPcnt);
 }
+
+public enum EntityType
+{
+    Player,
+    BaseChild,
+    EggChild,
+    PumpkinChild,
+    TomatoChild,
+    empty
+}
