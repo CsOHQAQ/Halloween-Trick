@@ -50,7 +50,7 @@ public class PlayerEntity : Entity
             transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
         }
 
-        this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+        // this.GetComponent<WeaponManager>().CurWeapon.Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         // 自动开火 往鼠标方向
         for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
         {

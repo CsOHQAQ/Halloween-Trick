@@ -14,11 +14,6 @@ public class ChildBase : Entity
         DPS = tab.GetFloat("Character", "BaseChild", "DPS");
     }
 
-    private void Awake()
-    {
-        Init();
-    }
-
     public override void Update()
     {
         base.Update();
@@ -35,10 +30,12 @@ public class ChildBase : Entity
         }
 
         // 自动开火 往玩家方向
-        if(weaponManager!=null)
-        for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
+        if (weaponManager != null)
         {
-            weaponManager.EquipWeapon[i].Fire(playerPos);
+            for (int i = 0; i < weaponManager.EquipWeapon.Count; i++)
+            {
+                weaponManager.EquipWeapon[i].Fire(playerPos);
+            }
         }
 
 
