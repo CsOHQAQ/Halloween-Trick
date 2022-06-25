@@ -8,9 +8,9 @@ public class TomatoChild : ChildBase
     {
         base.Init();
         type = EntityType.TomatoChild;
-        CurHealth = MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
         weaponManager.Add("ChTomato");
     }
 }

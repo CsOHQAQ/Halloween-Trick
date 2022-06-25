@@ -28,10 +28,10 @@ public class DamageBattery : Entity
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "DamageBattery", "Health");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "DamageBattery", "Health");
         DetectionRadius = tab.GetFloat("Character", "DamageBattery", "DetectionRadius");
         HPS = tab.GetFloat("Character", "DamageBattery", "HPS");
-        DPS= tab.GetFloat("Character", "DamageBattery", "DPS");
+        data.DPS = tab.GetFloat("Character", "DamageBattery", "DPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
 
         GetComponent<CircleCollider2D>().radius = DetectionRadius;
@@ -44,12 +44,12 @@ public class DamageBattery : Entity
 
         if(Vector2.Distance(transform.position,EntityManager.Instance.player.transform.position)<= EntityManager.Instance.player.HealBatteryRange)
         {
-            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
+            Data.CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
 
         }
         else
         {
-            CurHealth -= HPS * Time.deltaTime;
+            Data.CurHealth -= HPS * Time.deltaTime;
         }
         /*
         foreach (var i in collisionPool)
@@ -72,7 +72,7 @@ public class DamageBattery : Entity
         if (collision.GetComponent<Entity>() != null && collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
         {
             //Debug.Log("对" + collision.GetHashCode() + "伤害中");
-            collision.GetComponent<Entity>().CurHealth -= DPS * Time.deltaTime;
+            collision.GetComponent<Entity>().Data.CurHealth -= Data.DPS * Time.deltaTime;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

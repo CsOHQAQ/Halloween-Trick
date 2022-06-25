@@ -7,9 +7,9 @@ public class EggChild : ChildBase
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "EggChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "EggChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "EggChild", "DPS");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "EggChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "EggChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "EggChild", "DPS");
         weaponManager.Add("ChEgg");
     }
 }

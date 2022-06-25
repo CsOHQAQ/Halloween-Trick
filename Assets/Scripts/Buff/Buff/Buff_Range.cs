@@ -7,6 +7,6 @@ public class Buff_Range : WeaponBuffBase
     public Buff_Range(float pcntIndex)
     {
         buffChanger = new WeaponDataChanger();
-        buffChanger.rangePlu = pcntIndex;
+        buffChanger.rangePcnt = pcntIndex;
     }
 }

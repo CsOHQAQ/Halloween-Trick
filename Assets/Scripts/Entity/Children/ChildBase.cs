@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class ChildBase : Entity
 {
-    private readonly float attackDistance = 1f; // 帧伤攻击距离
+    private readonly float attackDistance = 1.5f; // 帧伤攻击距离
     private Animator animator;
 
     public override void Init()
     {
         base.Init();
         type = EntityType.BaseChild;
-        CurHealth = MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "BaseChild", "DPS");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "BaseChild", "DPS");
         animator = this.transform.GetComponent<Animator>();
     }
 
@@ -23,14 +23,16 @@ public class ChildBase : Entity
         Vector2 playerPos = EntityManager.Instance.player.transform.position;
 
         // 向玩家靠近
-        if(CurHealth>0)
-        transform.position = Vector3.MoveTowards(transform.position, playerPos, MoveSpeed * Time.deltaTime);
+        if (Data.CurHealth > 0)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, playerPos, Data.MoveSpeed * Time.deltaTime);
+        }
 
         // 如果和玩家距离小于等于帧伤攻击距离 对玩家造成帧伤
         if (Vector2.Distance(transform.position, playerPos) <= attackDistance)
         {
             if (animator != null) animator.SetBool("IsAttack", true);
-            EntityManager.Instance.player.CurHealth -= DPS * Time.deltaTime;
+            EntityManager.Instance.player.Data.CurHealth -= Data.DPS * Time.deltaTime;
         }
         else
         {

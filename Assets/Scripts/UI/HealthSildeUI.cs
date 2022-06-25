@@ -17,7 +17,7 @@ public class HealthSildeUI : UIBase
         if (ent != null)
         {
             transform.position = Camera.main.WorldToScreenPoint((Vector2)ent.transform.position + new Vector2(0, 2.5f));
-            cover.fillAmount = ent.CurHealth / ent.MaxHealth;
+            cover.fillAmount = ent.Data.CurHealth / ent.Data.MaxHealth;
 
         }
         else
