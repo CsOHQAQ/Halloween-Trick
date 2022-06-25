@@ -7,5 +7,13 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PumpkKid
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: 9cba3237ac4387b4db4ed1187dd47ac7, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c0c4307ea0d03584484cc1b0410a050b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8ccefe8c6ae5eb6469d4d058608530d5, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 53265553cc8eff44c995d4f1dac5095d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e7912d2141d1d5f4e874c3c4d8354e8a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 02dc946dfb1f7dd48b77c49f2dbf32cf, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0080a1418ffdc604fafabd29624ecfa1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 3feaeac29f7d96e419c757ea615cf6a6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: abff0e88e3532a746be64f4380a8cc35, type: 2}
