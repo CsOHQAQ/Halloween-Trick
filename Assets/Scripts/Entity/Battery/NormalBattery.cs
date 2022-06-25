@@ -27,7 +27,7 @@ public class NormalBattery : Entity
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "NormalBattery", "Health");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "NormalBattery", "Health");
         DetectionRadius = tab.GetFloat("Character", "NormalBattery", "DetectionRadius");
         HPS= tab.GetFloat("Character", "NormalBattery", "HPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
@@ -46,13 +46,11 @@ public class NormalBattery : Entity
         base.Update();
         if (Vector2.Distance(transform.position, EntityManager.Instance.player.transform.position) <= EntityManager.Instance.player.HealBatteryRange)
         {
-            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
-
+            Data.CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
         }
         else
         {
-
-            CurHealth -= HPS * Time.deltaTime;
+            Data.CurHealth -= HPS * Time.deltaTime;
         }
     }
 }

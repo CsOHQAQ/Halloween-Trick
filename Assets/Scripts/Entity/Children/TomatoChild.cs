@@ -7,9 +7,11 @@ public class TomatoChild : ChildBase
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
-        MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
-        DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
+        type = EntityType.TomatoChild;
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
+        data.DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
+        attackDistance = tab.GetFloat("Character", "TomatoChild", "AttackDistance");
         weaponManager.Add("ChTomato");
     }
 }

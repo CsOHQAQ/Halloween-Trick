@@ -10,7 +10,11 @@ public class EntityManager : MonoSingleton<EntityManager>
 {
     public PlayerEntity player;
     public List<Entity> allEntities;
+
+    public float CurEnergy;
+    public float MaxEnergy=15;
     private float count;
+
     //protected TableAgent spawnTab;
     protected object[,] spawnData; //[行数, 数据类型(0-Type 1-Difficulty)
 
@@ -34,6 +38,8 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void Init()
     {
+        CurEnergy = 0;
+
         count = 8;
         allEntities = new List<Entity>();
         player = new PlayerEntity();
@@ -70,7 +76,7 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         do
         {
-            randRow = Random.Range(0, 15);
+            randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
             childType = (string)spawnData[randRow, 0];
             difficulty = (float)spawnData[randRow, 1];
             ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
@@ -81,6 +87,23 @@ public class EntityManager : MonoSingleton<EntityManager>
             totalDiff += difficulty;
         }
         while (totalDiff < maxDiff);
+
+        ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
+        ent.Init();
+        x = RandNormalDistribution(spawnPos.x, 2);
+        y = RandNormalDistribution(spawnPos.y, 2);
+        ent.transform.position = new Vector3(x, y);
+    }
+
+    public void AddEnergy(Entity ent)
+    {
+        TableAgent tab = new TableAgent();
+        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Character").text);
+        CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
+        if (CurEnergy >= MaxEnergy)
+        {
+            CurEnergy = MaxEnergy;
+        }
     }
 
     public Vector2 OutScreenPosition()

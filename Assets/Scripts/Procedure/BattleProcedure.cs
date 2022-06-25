@@ -10,11 +10,14 @@ public class BattleProcedure : ProcedureBase
         base.OnEnter(args);
         EntityManager.Instance.Init();
         ResourceManager.Instance.Instantiate("Prefabs/Aimer");
+        UIManager.Instance.Open("EnergySlide");
     }
 
     protected override void OnLeave()
     {
         base.OnLeave();
         GameObject.DestroyImmediate(GameObject.Find("Aimer"));
+
+        UIManager.Instance.Close("EnergySlide");
     }
 }

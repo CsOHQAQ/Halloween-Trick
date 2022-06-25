@@ -14,7 +14,7 @@ public class WeaponBuffBase : Buff
         buffManager.weaponChanger.baseSpreadMul *= buffChanger.baseSpreadMul;
         buffManager.weaponChanger.fireTimesPlu += buffChanger.fireTimesPlu;
         buffManager.weaponChanger.fireCDMul *= buffChanger.fireCDMul;
-        buffManager.weaponChanger.rangePlu += buffChanger.rangePlu;
+        buffManager.weaponChanger.rangePcnt += buffChanger.rangePcnt;
     }
     public override void CancelDataChange()
     {
@@ -25,6 +25,6 @@ public class WeaponBuffBase : Buff
         buffManager.weaponChanger.baseSpreadMul /= buffChanger.baseSpreadMul;
         buffManager.weaponChanger.fireTimesPlu -= buffChanger.fireTimesPlu;
         buffManager.weaponChanger.fireCDMul /= buffChanger.fireCDMul;
-        buffManager.weaponChanger.rangePlu -= buffChanger.rangePlu;
+        buffManager.weaponChanger.rangePcnt -= buffChanger.rangePcnt;
     }
 }

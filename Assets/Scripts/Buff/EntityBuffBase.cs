@@ -10,11 +10,13 @@ public class EntityBuffBase : Buff
     {
         buffManager.entityChanger.maxHealthPcnt += buffChanger.maxHealthPcnt;
         buffManager.entityChanger.moveSpeedPcnt += buffChanger.moveSpeedPcnt;
+        buffManager.entityChanger.DPSPcnt += buffChanger.DPSPcnt;
     }
     public override void CancelDataChange()
     {
         base.CancelDataChange();
         buffManager.entityChanger.maxHealthPcnt -= buffChanger.maxHealthPcnt;
         buffManager.entityChanger.moveSpeedPcnt -= buffChanger.moveSpeedPcnt;
+        buffManager.entityChanger.DPSPcnt -= buffChanger.DPSPcnt;
     }
 }

@@ -100,12 +100,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a9544e2dd78ad468d9c054c2f7062a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurHealth: 0
-  MaxHealth: 0
-  MoveSpeed: 0
-  DPS: 0
   weaponManager: {fileID: 0}
   buffManager: {fileID: 0}
+  type: 0
+  attackDistance: 0
 --- !u!50 &4669824688752488801
 Rigidbody2D:
   serializedVersion: 4
@@ -119,7 +117,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -155,9 +153,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.55842066}
+  m_Offset: {x: 0, y: -0.4}
   serializedVersion: 2
-  m_Radius: 0.35564375
+  m_Radius: 0.36
 --- !u!61 &6018380192635577419
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -171,7 +169,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.008913517, y: -0.4372394}
+  m_Offset: {x: -0.02, y: -0.3067898}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -182,7 +180,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7511282, y: 1.1683323}
+  m_Size: {x: 1.274421, y: 1.601285}
   m_EdgeRadius: 0
 --- !u!114 &-2886133918680173890
 MonoBehaviour:

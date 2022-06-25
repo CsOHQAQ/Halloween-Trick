@@ -29,7 +29,7 @@ public class SlowBattery : Entity
     public override void Init()
     {
         base.Init();
-        CurHealth = MaxHealth = tab.GetFloat("Character", "SlowBattery", "Health");
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "SlowBattery", "Health");
         DetectionRadius = tab.GetFloat("Character", "SlowBattery", "DetectionRadius");
         PowerRate = tab.GetFloat("Character", "SlowBattery", "PowerRate");
         HPS = tab.GetFloat("Character", "SlowBattery", "HPS");
@@ -43,25 +43,25 @@ public class SlowBattery : Entity
         base.Update();
         if (Vector2.Distance(transform.position, EntityManager.Instance.player.transform.position) <= EntityManager.Instance.player.HealBatteryRange)
         {
-            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
+            Data.CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
 
         }
         else
         {
 
-            CurHealth -= HPS * Time.deltaTime;
+            Data.CurHealth -= HPS * Time.deltaTime;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         collisionPool.Add(collision.gameObject);
         ChildBase childBase = collision.GetComponent<ChildBase>();
-        if (childBase != null) childBase.MoveSpeed = childBase.MoveSpeed * PowerRate;
+        if (childBase != null) childBase.data.MoveSpeed *= PowerRate;
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         ChildBase childBase = collision.GetComponent<ChildBase>();
-        if (childBase != null) childBase.MoveSpeed = childBase.MoveSpeed / PowerRate;
+        if (childBase != null) childBase.data.MoveSpeed /= PowerRate;
         collisionPool.Remove(collision.gameObject);
     }
 
