@@ -27,6 +27,7 @@ public class Entity :MonoBehaviour
         buffManager = GetComponent<BuffManager>();
         buffManager.ent = this;
         buffManager.Init();
+        healthSlideUI = new HealthSildeUI();
         healthSlideUI = UIManager.Instance.Open("HealthSlide");
         healthSlideUI.GetComponent<HealthSildeUI>().ent = this;
     }
@@ -37,21 +38,14 @@ public class Entity :MonoBehaviour
         if (CurHealth <= 0)
         {
             UIManager.Instance.Close(healthSlideUI);
-            try
-            {
-                Destroy(healthSlideUI.gameObject);
-            }
-            catch {
-                Debug.LogWarning("未能成功销毁healthSlideUI");
-            }
-            try
-            {
-                Destroy(this.gameObject);
-            }
-            catch {
-                Debug.LogWarning("未能成功销毁GO");
-            }
-
+            Debug.Log("准备摧毁");
+            if(healthSlideUI != null) Destroy(healthSlideUI.gameObject,2f);
+            if(healthSlideUI!=null) healthSlideUI.gameObject.SetActive(false);
+            if (this.GetComponent<Animator>() != null) this.GetComponent<Animator>().SetBool("IsDead", true);
+            Destroy(this.gameObject,2f);
+            this.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            this.transform.GetComponent<BoxCollider2D>().isTrigger = true;
+            if (this.transform.GetComponent<CircleCollider2D>()) this.transform.GetComponent<CircleCollider2D>().isTrigger = true;
         }
     }
 }

@@ -17,8 +17,8 @@ public class BuffManager : MonoBehaviour
         DisposeList = new List<Buff>();
         weaponChanger = new WeaponDataChanger();
         entityChanger = new EntityDataChanger();
-        weaponChanger = new WeaponDataChanger();
-        entityChanger = new EntityDataChanger();
+        //weaponChanger = new WeaponDataChanger();
+        //entityChanger = new EntityDataChanger();
     }
     protected virtual void FixedUpdate()
     {
@@ -101,35 +101,35 @@ public class BuffManager : MonoBehaviour
 
 public class WeaponDataChanger
 {
-    //变量名以mul结尾表示乘算，plu表示加算
+    //变量名以Mul结尾表示指数乘算，Plu表示加算，Pcnt表示加法乘算
     public int pentrationPlu;
-    public float stopPowerMul;
-    public float shotSpeedMul;
+    public float stopPowerPcnt;
+    public float shotSpeedPcnt;
     public float baseSpreadMul;
     public float fireTimesPlu;
     public float fireCDMul;
-    public float rangeMul;
+    public float rangePlu;
     public WeaponDataChanger()
     {
         pentrationPlu = 0;
-        stopPowerMul = 1;
-        shotSpeedMul = 1;
+        stopPowerPcnt = 1;
+        shotSpeedPcnt = 1;
         baseSpreadMul = 1; 
         fireTimesPlu = 0;
         fireCDMul = 1;
-        rangeMul = 1;
+        rangePlu = 1;
 
     }
 }
 public class EntityDataChanger
 {
-    //变量名以mul结尾表示乘算，plu表示加算
-    public float maxHealthMul;
-    public float moveSpeedMul;
+    //变量名以Mul结尾表示指数乘算，Plu表示加算，Pcnt表示加法乘算
+    public float maxHealthPcnt;
+    public float moveSpeedPcnt;
 
     public EntityDataChanger()
     {
-        maxHealthMul = 1;
-        moveSpeedMul = 1;
+        maxHealthPcnt = 1;
+        moveSpeedPcnt = 1;
     }
 }
