@@ -31,14 +31,7 @@ public class NormalBattery : Entity
         DetectionRadius = tab.GetFloat("Character", "NormalBattery", "DetectionRadius");
         HPS= tab.GetFloat("Character", "NormalBattery", "HPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
-    }
-    private void Awake()
-    {
-        Init();
         GetComponent<CircleCollider2D>().radius = DetectionRadius;
-    }
-    private void Start()
-    {
         weaponManager.Add("HandGun");
         DrawDetectionCircle();
     }
@@ -51,6 +44,15 @@ public class NormalBattery : Entity
     public override void Update()
     {
         base.Update();
-        CurHealth -= HPS * Time.deltaTime;
+        if (Vector2.Distance(transform.position, EntityManager.Instance.player.transform.position) <= EntityManager.Instance.player.HealBatteryRange)
+        {
+            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
+
+        }
+        else
+        {
+
+            CurHealth -= HPS * Time.deltaTime;
+        }
     }
 }

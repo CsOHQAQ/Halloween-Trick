@@ -9,7 +9,7 @@ public class DamageBattery : Entity
     private LineRenderer DetectionCircle;
     private int PointCount = 360;//用于绘制检测圆的点数
     private List<GameObject> collisionPool;
-
+    
     public void DrawDetectionCircle()
     {
         DetectionCircle.enabled = true;
@@ -28,26 +28,30 @@ public class DamageBattery : Entity
     public override void Init()
     {
         base.Init();
+        GetComponent<CircleCollider2D>().radius = DetectionRadius;
         CurHealth = MaxHealth = tab.GetFloat("Character", "DamageBattery", "Health");
         DetectionRadius = tab.GetFloat("Character", "DamageBattery", "DetectionRadius");
         HPS = tab.GetFloat("Character", "DamageBattery", "HPS");
         DPS= tab.GetFloat("Character", "DamageBattery", "DPS");
         DetectionCircle = this.transform.Find("DetectionCircle").GetComponent<LineRenderer>();
-        collisionPool = new List<GameObject>();
-    }
-    private void Awake()
-    {
-        Init();
-        GetComponent<CircleCollider2D>().radius = DetectionRadius;
-    }
-    private void Start()
-    {
+
         DrawDetectionCircle();
+        collisionPool = new List<GameObject>();
     }
     public override void Update()
     {
         base.Update();
-        CurHealth -= HPS * Time.deltaTime;
+
+        if(Vector2.Distance(transform.position,EntityManager.Instance.player.transform.position)<= EntityManager.Instance.player.HealBatteryRange)
+        {
+            CurHealth += EntityManager.Instance.player.HealBatterySpeed * Time.deltaTime;
+
+        }
+        else
+        {
+
+            CurHealth -= HPS * Time.deltaTime;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -55,11 +59,11 @@ public class DamageBattery : Entity
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        foreach(var i in collisionPool)
+        foreach (var i in collisionPool)
         {
-            if (i.GetComponent<Entity>() != null&&i.layer!=8)
+            if (i.GetComponent<Entity>() != null && i.layer != 8)
             {
-                Debug.Log("damage");
+                Debug.Log("对"+i.name+"伤害中");
                 i.GetComponent<Entity>().CurHealth -= DPS * Time.deltaTime;
             }
         }

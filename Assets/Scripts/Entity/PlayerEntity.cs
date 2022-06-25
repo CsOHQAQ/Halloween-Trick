@@ -4,6 +4,8 @@ using UnityEngine;
 using QxFramework.Core;
 public class PlayerEntity : Entity
 {
+    public float HealBatteryRange=5;
+    public float HealBatterySpeed=15;
 
     public override void Init()
     {
@@ -48,16 +50,6 @@ public class PlayerEntity : Entity
             weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            GameObject newOne = ResourceManager.Instance.Instantiate("Prefabs/Battery/NormalBattery");
-            newOne.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition)+new Vector3(0,0,10);
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            GameObject newOne = ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
-            newOne.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + new Vector3(0, 0, 10);
-        }
 
         //测试部分
         if (Input.GetKeyDown(KeyCode.U))
@@ -65,6 +57,7 @@ public class PlayerEntity : Entity
             Debug.Log("测试buff");
             TestBuff();
         }
+        TestBattery();
     }
 
     private void TestBuff()
@@ -72,5 +65,26 @@ public class PlayerEntity : Entity
         //测试部分
         Buff_Pentration testBuff = new Buff_Pentration(3);
         buffManager.AddBuff(testBuff, 5);
+    }
+    void TestBattery()
+    {
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            GameObject go= ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
+            go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+            go.GetComponent<DamageBattery>().Init();
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/NormalBattery");
+            go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+            go.GetComponent<NormalBattery>().Init();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/SlowBattery");
+            go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
+            go.GetComponent<SlowBattery>().Init();
+        }
     }
 }
