@@ -1,5 +1,5 @@
 ﻿Character,Health,MoveSpeed,DPS,DetectionRadius,PowerRate,HPS
-Player,100,4,0,,,
+Player,100,2,0,,,
 BaseChild,5,1,10,,,
 NormalBattery,100,,,3,,10
 SlowBattery,100,,,5,0.2,50

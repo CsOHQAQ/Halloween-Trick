@@ -28,7 +28,7 @@ public class PlayerEntity : Entity
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += (Vector3)Vector2.left * MoveSpeed*Time.deltaTime;
+            transform.position += (Vector3)Vector2.left * MoveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -66,7 +66,12 @@ public class PlayerEntity : Entity
         Buff_Pentration testBuff = new Buff_Pentration(3);
         buffManager.AddBuff(testBuff, 5);
     }
-    void TestBattery()
+    private void SpeedSlowDown()
+    {
+
+    }
+
+	void TestBattery()
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
