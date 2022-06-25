@@ -41,7 +41,7 @@ public class Entity :MonoBehaviour
             if(healthSlideUI!=null) healthSlideUI.gameObject.SetActive(false);
             if (this.GetComponent<Animator>() != null) this.GetComponent<Animator>().SetBool("IsDead", true);
             Destroy(this.gameObject,2f);
-            this.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            if(this.transform.GetComponent<Rigidbody2D>()!=null) this.transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
             this.transform.GetComponent<BoxCollider2D>().isTrigger = true;
             if (this.transform.GetComponent<CircleCollider2D>()) this.transform.GetComponent<CircleCollider2D>().isTrigger = true;
         }

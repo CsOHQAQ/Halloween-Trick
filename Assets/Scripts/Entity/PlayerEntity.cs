@@ -18,7 +18,7 @@ public class PlayerEntity : Entity
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
         //测试用
-        weaponManager.Add("ShotGun");
+        weaponManager.Add("MachineGun");
 
     }
     private void Start()
