@@ -85,7 +85,7 @@ public class Bullet : MonoBehaviour
             if ((collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
                 && collision.isTrigger)
             {
-                collision.GetComponent<Entity>().CurHealth -= Damage;
+                collision.GetComponent<Entity>().Data.CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
                 Pentration--;
                 GameObject newEffect = GameObject.Instantiate(NewEffect);
@@ -100,7 +100,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.layer == 8 && collision.isTrigger)
             {
-                collision.GetComponent<Entity>().CurHealth -= Damage;
+                collision.GetComponent<Entity>().Data.CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
                 Pentration--;
                 GameObject newEffect = GameObject.Instantiate(NewEffect);

@@ -13,9 +13,9 @@ public class PlayerEntity : Entity
     public override void Init()
     {
         base.Init();
-        MaxHealth = tab.GetFloat("Character", "Player", "Health");
-        CurHealth = MaxHealth;
-        MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
+        type = EntityType.Player;
+        data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "Player", "Health");
+        data.MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
         //测试用
         weaponManager.Add("MachineGun");
@@ -36,22 +36,22 @@ public class PlayerEntity : Entity
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += (Vector3)Vector2.left * MoveSpeed * Time.deltaTime;
+            transform.position += (Vector3)Vector2.left * Data.MoveSpeed * Time.deltaTime;
             animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            transform.position += (Vector3)Vector2.right * MoveSpeed * Time.deltaTime;
+            transform.position += (Vector3)Vector2.right * Data.MoveSpeed * Time.deltaTime;
             animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += (Vector3)Vector2.up * MoveSpeed * Time.deltaTime;
+            transform.position += (Vector3)Vector2.up * Data.MoveSpeed * Time.deltaTime;
             animator.SetBool("IsStay", false);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            transform.position += (Vector3)Vector2.down * MoveSpeed * Time.deltaTime;
+            transform.position += (Vector3)Vector2.down * Data.MoveSpeed * Time.deltaTime;
             animator.SetBool("IsStay", false);
         }
 
@@ -97,8 +97,10 @@ public class PlayerEntity : Entity
         //buffManager.AddBuff(testBuff, 100);
         //Buff_StopPower testBuff2 = new Buff_StopPower(-0.5f);
         //buffManager.AddBuff(testBuff2, 100);
-        Buff_ShotSpeed testBuff3 = new Buff_ShotSpeed(-0.9f);
-        buffManager.AddBuff(testBuff3, 100);
+        //Buff_ShotSpeed testBuff3 = new Buff_ShotSpeed(-0.9f);
+        //buffManager.AddBuff(testBuff3, 100);
+        Buff_MaxHealth testBuff4 = new Buff_MaxHealth(100f);
+        buffManager.AddBuff(testBuff4, 100);
     }
 
 	void TestBattery()
