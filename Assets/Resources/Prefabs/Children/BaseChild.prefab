@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -6335825293965596811}
   - component: {fileID: 4669824688752488801}
   - component: {fileID: 3405485441881799264}
+  - component: {fileID: 4279704184198822768}
   m_Layer: 9
   m_Name: BaseChild
   m_TagString: Untagged
@@ -101,6 +102,7 @@ MonoBehaviour:
   MoveSpeed: 0
   DPS: 0
   weaponManager: {fileID: 0}
+  buffManager: {fileID: 0}
 --- !u!50 &4669824688752488801
 Rigidbody2D:
   serializedVersion: 4
@@ -132,10 +134,10 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.068175375, y: 0.0054540634}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -146,5 +148,17 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.7400507, y: 0.7782285}
   m_EdgeRadius: 0
+--- !u!114 &4279704184198822768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1873751127906071077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b68dc4284bffd24a896505b332bc9ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
