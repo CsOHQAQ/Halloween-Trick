@@ -101,6 +101,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponManager: {fileID: 0}
   buffManager: {fileID: 0}
+  type: 0
+  attackDistance: 0
 --- !u!50 &4669824688752488801
 Rigidbody2D:
   serializedVersion: 4
@@ -114,7 +116,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 5
+  m_LinearDrag: 8
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}

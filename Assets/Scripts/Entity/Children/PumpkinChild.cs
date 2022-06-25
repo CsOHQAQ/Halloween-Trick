@@ -11,6 +11,7 @@ public class PumpkinChild : ChildBase
         data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "PumpkinChild", "Health");
         data.MoveSpeed = tab.GetFloat("Character", "PumpkinChild", "MoveSpeed");
         data.DPS = tab.GetFloat("Character", "PumpkinChild", "DPS");
+        attackDistance = tab.GetFloat("Character", "PumpkinChild", "AttackDistance");
         weaponManager.Add("ChPumpkin");
     }
 }

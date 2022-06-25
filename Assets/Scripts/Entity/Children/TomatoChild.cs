@@ -11,6 +11,7 @@ public class TomatoChild : ChildBase
         data.CurHealth = data.MaxHealth = tab.GetFloat("Character", "TomatoChild", "Health");
         data.MoveSpeed = tab.GetFloat("Character", "TomatoChild", "MoveSpeed");
         data.DPS = tab.GetFloat("Character", "TomatoChild", "DPS");
+        attackDistance = tab.GetFloat("Character", "TomatoChild", "AttackDistance");
         weaponManager.Add("ChTomato");
     }
 }
