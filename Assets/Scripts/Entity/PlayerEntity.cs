@@ -73,21 +73,32 @@ public class PlayerEntity : Entity
         //测试部分
         if (Input.GetKeyDown(KeyCode.U))
         {
-            Debug.Log("测试buff");
-            TestBuff();
+            if (flag == false)
+            {
+                Debug.Log("测试buff");
+                TestBuff();
+            }
+            else
+            {
+                Debug.Log("取消测试buff");
+                buffManager.RemoveAllBuff();
+            }
+            flag = !flag;
         }
         TestBattery();
     }
 
+    private bool flag = false;
+
     private void TestBuff()
     {
         //测试部分
-        Buff_Pentration testBuff = new Buff_Pentration(3);
-        buffManager.AddBuff(testBuff, 5);
-    }
-    private void SpeedSlowDown()
-    {
-
+        //Buff_Pentration testBuff = new Buff_Pentration(100);
+        //buffManager.AddBuff(testBuff, 100);
+        //Buff_StopPower testBuff2 = new Buff_StopPower(-0.5f);
+        //buffManager.AddBuff(testBuff2, 100);
+        Buff_ShotSpeed testBuff3 = new Buff_ShotSpeed(-0.9f);
+        buffManager.AddBuff(testBuff3, 100);
     }
 
 	void TestBattery()
