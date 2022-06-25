@@ -25,7 +25,6 @@ public class Entity :MonoBehaviour
         buffManager = GetComponent<BuffManager>();
         buffManager.ent = this;
         buffManager.Init();
-        healthSlideUI = new HealthSildeUI();
         healthSlideUI = UIManager.Instance.Open("HealthSlide");
         healthSlideUI.GetComponent<HealthSildeUI>().ent = this;
     }
@@ -36,9 +35,20 @@ public class Entity :MonoBehaviour
         if (CurHealth <= 0)
         {
             UIManager.Instance.Close(healthSlideUI);
-            Debug.Log("准备摧毁");
-            Destroy(healthSlideUI.gameObject);
-            Destroy(this.gameObject);
+            try
+            {
+                Destroy(healthSlideUI.gameObject);
+            }
+            catch {
+                Debug.LogWarning("未能成功销毁healthSlideUI");
+            }
+            try
+            {
+                Destroy(this.gameObject);
+            }
+            catch {
+                Debug.LogWarning("未能成功销毁GO");
+            }
 
         }
     }
