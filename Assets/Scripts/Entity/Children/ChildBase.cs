@@ -50,8 +50,13 @@ public class ChildBase : Entity
             }
         }
 
+    }
+    public override void BeforeDestroy()
+    {
+        Debug.Log(name + "濒死");
+
+        animator.SetBool("IsDead", true);
 
     }
 
-    
 }

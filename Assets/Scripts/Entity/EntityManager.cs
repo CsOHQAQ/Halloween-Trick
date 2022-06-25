@@ -98,7 +98,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void AddEnergy(Entity ent)
     {
         TableAgent tab = new TableAgent();
-        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/ChildSpawn").text);
+        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Character").text);
         CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
         if (CurEnergy >= MaxEnergy)
         {

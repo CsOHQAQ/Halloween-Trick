@@ -32,7 +32,6 @@ public class Entity :MonoBehaviour
         buffManager = GetComponent<BuffManager>();
         buffManager.ent = this;
         buffManager.Init();
-        healthSlideUI = new HealthSildeUI();
         healthSlideUI = UIManager.Instance.Open("HealthSlide");
         healthSlideUI.GetComponent<HealthSildeUI>().ent = this;
         Data.data = data;
@@ -43,22 +42,11 @@ public class Entity :MonoBehaviour
     {
         if (Data.CurHealth <= 0)
         {
-            UIManager.Instance.Close(healthSlideUI);
-            try
+            if (gameObject.layer == 9 || gameObject.layer == 10)
             {
-                Destroy(healthSlideUI.gameObject);
+                EntityManager.Instance.AddEnergy(this);
+
             }
-            catch {
-                Debug.LogWarning("未能成功销毁healthSlideUI");
-            }
-            try
-            {
-                Destroy(this.gameObject);
-            }
-            catch {
-                Debug.LogWarning("未能成功销毁GO");
-            }
-            return;
         }
         
         if (Data.MaxHealth != lastMaxHealth && lastMaxHealth != 0)
@@ -70,6 +58,39 @@ public class Entity :MonoBehaviour
             }
         }
         lastMaxHealth = Data.MaxHealth;
+    }
+    /// <summary>
+    /// 执行摧毁前的操作 
+    /// </summary>
+    public virtual void BeforeDestroy()
+    {
+        DoDestory();
+    }
+
+    /// <summary>
+    /// 真正执行摧毁的操作
+    /// </summary>
+    public void DoDestory()
+    {
+
+        UIManager.Instance.Close(healthSlideUI);
+        try
+        {
+            Destroy(healthSlideUI.gameObject);
+        }
+        catch
+        {
+            Debug.LogWarning("未能成功销毁healthSlideUI");
+        }
+        try
+        {
+            Destroy(this.gameObject);
+        }
+        catch
+        {
+            Debug.LogWarning("未能成功销毁GO");
+        }
+        return;
     }
 }
 
