@@ -35,7 +35,7 @@ public class PlayerEntity : Entity
 
         if (Input.GetKey(KeyCode.A))
         {
-            transform.position += (Vector3)Vector2.left * MoveSpeed*Time.deltaTime;
+            transform.position += (Vector3)Vector2.left * MoveSpeed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -56,5 +56,10 @@ public class PlayerEntity : Entity
         {
             weaponManager.EquipWeapon[i].Fire(Camera.main.ScreenToWorldPoint(Input.mousePosition));
         }
+    }
+
+    private void SpeedSlowDown()
+    {
+
     }
 }
