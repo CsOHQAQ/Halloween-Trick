@@ -37,9 +37,6 @@ public class Bullet : MonoBehaviour
                 && collision.isTrigger)
             {
                 collision.GetComponent<Entity>().CurHealth -= Damage;
-                
-
-
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
                 Pentration--;
 
