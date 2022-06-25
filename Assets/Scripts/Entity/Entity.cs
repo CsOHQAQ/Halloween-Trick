@@ -44,8 +44,7 @@ public class Entity :MonoBehaviour
         {
             if (gameObject.layer == 9 || gameObject.layer == 10)
             {
-                EntityManager.Instance.AddEnergy(this);
-
+                BeforeDestroy();
             }
         }
         

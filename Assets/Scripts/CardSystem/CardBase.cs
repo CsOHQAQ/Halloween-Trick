@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CardBase : MonoBehaviour
+public class CardBase 
 {
-    // Start is called before the first frame update
-    void Start()
+    public virtual void Use()
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
+    }
+    public virtual void Destory()
     {
-        
+
     }
 }

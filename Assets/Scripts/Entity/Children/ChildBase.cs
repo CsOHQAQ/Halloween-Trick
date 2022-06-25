@@ -54,6 +54,8 @@ public class ChildBase : Entity
     {
         Debug.Log(name + "濒死");
 
+        EntityManager.Instance.AddEnergy(this);
+        animator.SetBool("IsAttack", false);
         animator.SetBool("IsDead", true);
 
     }
