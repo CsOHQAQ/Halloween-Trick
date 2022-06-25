@@ -10,7 +10,11 @@ public class EntityManager : MonoSingleton<EntityManager>
 {
     public PlayerEntity player;
     public List<Entity> allEntities;
+
+    public float CurEnergy;
+    public float MaxEnergy=15;
     private float count;
+
     //protected TableAgent spawnTab;
     protected object[,] spawnData; //[行数, 数据类型(0-Type 1-Difficulty)
 
@@ -34,6 +38,8 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void Init()
     {
+        CurEnergy = 0;
+
         count = 8;
         allEntities = new List<Entity>();
         player = new PlayerEntity();
@@ -81,6 +87,17 @@ public class EntityManager : MonoSingleton<EntityManager>
             totalDiff += difficulty;
         }
         while (totalDiff < maxDiff);
+    }
+
+    public void AddEnergy(Entity ent)
+    {
+        TableAgent tab = new TableAgent();
+        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/ChildSpawn").text);
+        CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
+        if (CurEnergy >= MaxEnergy)
+        {
+            CurEnergy = MaxEnergy;
+        }
     }
 
     public Vector2 OutScreenPosition()

@@ -13,6 +13,8 @@ public class PlayerEntity : Entity
     public override void Init()
     {
         base.Init();
+        type = EntityType.Player;
+
         MaxHealth = tab.GetFloat("Character", "Player", "Health");
         CurHealth = MaxHealth;
         MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");

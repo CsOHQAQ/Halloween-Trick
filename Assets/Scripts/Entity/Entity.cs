@@ -14,7 +14,7 @@ public class Entity :MonoBehaviour
 
     private UIBase healthSlideUI;
     protected TableAgent tab;
-
+    public EntityType type;
     public virtual void Init()
     {
         tab = new TableAgent();
@@ -22,6 +22,8 @@ public class Entity :MonoBehaviour
         weaponManager = GetComponent<WeaponManager>();
         if (weaponManager != null)
             weaponManager.ent = this;
+        type = new EntityType();
+
         buffManager = GetComponent<BuffManager>();
         buffManager.ent = this;
         buffManager.Init();
@@ -52,4 +54,13 @@ public class Entity :MonoBehaviour
 
         }
     }
+}
+public enum EntityType
+{
+    Player,
+    BaseChild,
+    EggChild,
+    PumpkinChild,
+    TomatoChild,
+    empty
 }

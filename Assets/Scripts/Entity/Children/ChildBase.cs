@@ -9,6 +9,7 @@ public class ChildBase : Entity
     public override void Init()
     {
         base.Init();
+        type = EntityType.BaseChild;
         CurHealth = MaxHealth = tab.GetFloat("Character", "BaseChild", "Health");
         MoveSpeed = tab.GetFloat("Character", "BaseChild", "MoveSpeed");
         DPS = tab.GetFloat("Character", "BaseChild", "DPS");
