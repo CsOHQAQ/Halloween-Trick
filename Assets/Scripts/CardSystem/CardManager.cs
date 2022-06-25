@@ -5,10 +5,40 @@ using App.Common;
 using QxFramework.Utilities;
 using System;
 using System.Reflection;
-public class CardManager : Singleton<CardManager>
+using QxFramework.Core;
+
+public class CardManager : MonoSingleton<CardManager>
 {
     public  List<CardBase> CargoCard;
     public List<CardBase> HandCard;
+    public int CurSelect;
+    /// <summary>
+    /// 这个是最初的初始化，只执行一次
+    /// </summary>
+    public void Initialize()
+    {
+        CargoCard = new List<CardBase>();
+    }
+    /// <summary>
+    /// 每次重新载入战斗场景的初始化
+    /// </summary>
+    public void Init()
+    {
+        HandCard = new List<CardBase>();
+
+    }
+
+
+
+    
+    private void Update()
+    {
+        if(ProcedureManager.Instance.Current is BattleProcedure)
+        {
+
+        }
+    }
+
     private void SkillAffect(string Func)
     {
         if (Func == "")
