@@ -1,3 +1,6 @@
 ﻿Character,Health,MoveSpeed,DPS
 Player,100,4,0
 BaseChild,5,1,10
+EggChild,5,1,10
+PumpkinChild,10,0.5,20
+TomatoChild,5,1,8

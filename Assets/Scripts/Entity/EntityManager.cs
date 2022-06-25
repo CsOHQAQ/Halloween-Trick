@@ -45,7 +45,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             Debug.Log("生成人物");
             count =0;
-            SpawnEnemy(OutScreenPosition(),5);
+            SpawnEnemy(OutScreenPosition(), 5);
         }
     }
 
@@ -55,7 +55,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         for(int i = 0; i < spawnNum; i++)
         {
             float x = RandNormalDistribution(spawnPos.x, 2), y = RandNormalDistribution(spawnPos.y, 2);
-            Entity ent= ResourceManager.Instance.Instantiate("Prefabs/Children/BaseChild").GetComponent<Entity>();
+            Entity ent= ResourceManager.Instance.Instantiate("Prefabs/Children/PumpkinChild").GetComponent<Entity>();
             ent.Init();
             ent.transform.position = new Vector3(x, y);
         }

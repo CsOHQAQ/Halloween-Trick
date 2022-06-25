@@ -30,9 +30,11 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // 判断碰撞体是trigger才造成伤害 防止重复判定
         if (layer == 8)//开枪人是玩家
         {
-            if (collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
+            if ((collision.gameObject.layer == 9 || collision.gameObject.layer == 10)
+                && collision.isTrigger)
             {
                 collision.GetComponent<Entity>().CurHealth -= Damage;
                 collision.attachedRigidbody.AddForce(direction.normalized * Pentration * 10);
@@ -40,7 +42,7 @@ public class Bullet : MonoBehaviour
 
             }
         }
-        if (layer == 9 || layer == 10)//开枪人是敌人
+        else if ((layer == 9 || layer == 10) && collision.isTrigger)//开枪人是敌人
         {
             if (collision.gameObject.layer == 8)
             {
