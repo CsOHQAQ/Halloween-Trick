@@ -20,6 +20,7 @@ public class Entity :MonoBehaviour
     private UIBase healthSlideUI;
     protected TableAgent tab;
     public EntityType type;
+    private bool isDestorying = false;
     public virtual void Init()
     {
         tab = new TableAgent();
@@ -44,7 +45,12 @@ public class Entity :MonoBehaviour
         {
             if (gameObject.layer == 9 || gameObject.layer == 10)
             {
-                BeforeDestroy();
+                if (!isDestorying)
+                {
+                    BeforeDestroy();
+                    isDestorying = true;
+                }
+                
             }
         }
         

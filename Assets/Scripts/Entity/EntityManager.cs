@@ -12,7 +12,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<Entity> allEntities;
 
     public float CurEnergy;
-    public float MaxEnergy=15;
+    public float MaxEnergy=10;
     private float count;
 
     //protected TableAgent spawnTab;
@@ -42,6 +42,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     public void Init()
     {
         CurEnergy = 0;
+        allEntities = new List<Entity>();
 
         count = 8;
         allEntities = new List<Entity>();
@@ -67,6 +68,15 @@ public class EntityManager : MonoSingleton<EntityManager>
             count = 0;
             SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
         }
+        if(ProcedureManager.Instance.Current is BattleProcedure)
+        {
+            if (GameMgr.Get<IGameTimeManager>().GetNow().Hours <= 1)
+            {
+                ProcedureManager.Instance.ChangeTo("ShopProcedure");
+
+            }
+        }
+        
     }
 
     private int GetMaxDiffByTime()
@@ -96,6 +106,7 @@ public class EntityManager : MonoSingleton<EntityManager>
             y = RandNormalDistribution(spawnPos.y, 2);
             ent.transform.position = new Vector3(x, y);
             totalDiff += difficulty;
+            allEntities.Add(ent);
         }
         while (totalDiff < maxDiff);
 
@@ -116,6 +127,12 @@ public class EntityManager : MonoSingleton<EntityManager>
         if (CurEnergy >= MaxEnergy)
         {
             CurEnergy = MaxEnergy;
+            if (CardManager.Instance.HandCard.Count < 3)
+            {
+                CardManager.Instance.DrawCardFromCargo();
+                CurEnergy = 0;
+                MaxEnergy += 10;
+            }
         }
     }
 
@@ -165,5 +182,18 @@ public class EntityManager : MonoSingleton<EntityManager>
         result = new Vector2(x, y);
         return result;
 
+    }
+    public void ClearAll()
+    {
+        UIManager.Instance.CloseAll();
+        foreach(var ent in allEntities)
+        {
+            if (ent != null)
+            {
+                Destroy(ent.gameObject);
+            }
+        }
+        allEntities.Clear();
+        Destroy(player.gameObject);
     }
 }

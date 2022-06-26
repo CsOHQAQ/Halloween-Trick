@@ -124,4 +124,8 @@ public class PlayerEntity : Entity
             go.GetComponent<SlowBattery>().Init();
         }
     }
+    public override void BeforeDestroy()
+    {
+        ProcedureManager.Instance.ChangeTo("ShopProcedure");
+    }
 }
