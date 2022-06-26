@@ -12,6 +12,7 @@ public class CardManager : MonoSingleton<CardManager>
     public  List<CardBase> CargoCard;
     public List<CardBase> HandCard;
     public int CurSelect;
+    public float CurMoney;
     private TableAgent tab;
     /// <summary>
     /// 这个是最初的初始化，只执行一次
@@ -21,6 +22,8 @@ public class CardManager : MonoSingleton<CardManager>
         tab = new TableAgent();
         tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Card").text);
         CargoCard = new List<CardBase>();
+        CurMoney = 0;
+
         List<int> StartCard = new List<int> { 1001,2001,1001,2001,4001,4001,5001,7001,9001,8001};
         foreach(var id in StartCard)
         {
