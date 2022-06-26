@@ -6,35 +6,53 @@ using UnityEngine.Windows;
 
 public class SpriteOut : Editor
 {
-   [MenuItem("Tools/ExportSprite")]
-    public static void ExportSprite()
+    [MenuItem("Tools/导出精灵")]
+    static void SaveSprite()
     {
-        // 拿到选中的资源
-        Object[] selects = Selection.objects;
-
-        // 
-        string savePath = Application.dataPath + "/outSprite/";
-        Directory.CreateDirectory(savePath);
-        foreach (Object item in selects)
+        //每一张贴图类型Advanced下 Read/Write Enabled打上勾才能进行文件读取
+        string resourcesPath = @"Assets/Resources/";
+        foreach (Object obj in Selection.objects)
         {
-            Sprite sprite = item as Sprite;
-            if (sprite == null)
-                continue;
 
-            // 获取精灵的贴图
-            Texture2D t = sprite.texture;
+            string selectionPath = AssetDatabase.GetAssetPath(obj);
 
-            // 创建一个新的贴图
-            Texture2D newTex = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height, TextureFormat.ARGB32, false);
-            // 设置像素点为 选择贴图的像素点
-            newTex.SetPixels(t.GetPixels((int)sprite.rect.xMin, (int)sprite.rect.yMin, (int)sprite.rect.width, (int)sprite.rect.height));
+            // 必须最上级是"Assets/Resources/"
+            if (selectionPath.StartsWith(resourcesPath))
+            {
+                //获取文件后罪名.png
+                string selectionExt = System.IO.Path.GetExtension(selectionPath);
 
-            newTex.Apply();
+                if (selectionExt.Length == 0) continue;
 
-            // 把创建的贴图对象，转换为bytes
-            byte[] buffer = newTex.EncodeToPNG();
-            // 写出
-            File.WriteAllBytes(savePath + sprite.name + ".png", buffer);
+                // 从路径"Assets/Resources/UI/testUI.png"得到路径"UI/testUI"
+                string loadPath = selectionPath.Remove(selectionPath.Length - selectionExt.Length);
+                loadPath = loadPath.Substring(resourcesPath.Length);
+
+                //加载此文件下的所有资源
+                Sprite[] spriteList = Resources.LoadAll<Sprite>(loadPath);
+
+                if (spriteList.Length > 0)
+                {
+                    //创建导出文件夹
+                    string outPath = Application.dataPath + "/outSprite/" + loadPath;
+                    System.IO.Directory.CreateDirectory(outPath);
+
+                    foreach (var sprite in spriteList)
+                    {
+                        Texture2D tex = new Texture2D((int)sprite.rect.width, (int)sprite.rect.height, sprite.texture.format, false);
+                        tex.SetPixels(sprite.texture.GetPixels((int)sprite.rect.xMin
+                                                    , (int)sprite.rect.yMin
+                                                    , (int)sprite.rect.width
+                                                    , (int)sprite.rect.height));
+                        tex.Apply();
+
+                        //写出成png文件
+                        System.IO.File.WriteAllBytes(outPath + "/" + sprite.name + ".png", tex.EncodeToPNG());
+                        Debug.Log("SaveSprite to" + outPath);
+                    }
+                    Debug.Log("保存图片完毕!" + outPath);
+                }
+            }
         }
     }
 }

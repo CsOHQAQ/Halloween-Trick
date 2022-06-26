@@ -8,73 +8,82 @@ using QxFramework.Core;
 /// </summary>
 public class CardEffect 
 {
-    public static void BaseSpread(float SpreadShrink)
+    public static void BaseSpread(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_BaseSpread(SpreadShrink),9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_BaseSpread(Index),9999999);
     }
 
-    public static void FireCD(float index)
+    public static void FireCD(string index)
     {
 
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_FireCD(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_FireCD(Index), 9999999);
     }
-    public static void FireTimes(float index)
+    public static void FireTimes(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_FireTimes((int)index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_FireTimes((int)Index), 9999999);
     }
-    public static void MaxHealth(float index)
+    public static void MaxHealth(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_MaxHealth(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_MaxHealth(Index), 9999999);
     }
-    public static void MoveSpeed(float index)
+    public static void MoveSpeed(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_MoveSpeed(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_MoveSpeed(Index), 9999999);
     }
-    public static void Pentration(float index)
+    public static void Pentration(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_Pentration((int)index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_Pentration((int)Index), 9999999);
     }
-    public static void Range(float index)
+    public static void Range(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_Range(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_Range(Index), 9999999);
     }
-    public static void ShotSpeed(float index)
+    public static void ShotSpeed(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_ShotSpeed(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_ShotSpeed(Index), 9999999);
     }
-    public static void StopPower(float index)
+    public static void StopPower(string index)
     {
-        EntityManager.Instance.player.buffManager.AddBuff(new Buff_StopPower(index), 9999999);
+        float Index = float.Parse(index);
+        EntityManager.Instance.player.buffManager.AddBuff(new Buff_StopPower(Index), 9999999);
     }
     public static void UpgradeSubGun()
     {
         EntityManager.Instance.player.weaponManager.Add("SubMachineGun");
     }
-    public static void UpgradeShotGun()
+    public static void UpgradeShotGun(string index)
     {
         EntityManager.Instance.player.weaponManager.Add("ShotGun");
 
     }
-    public static void UpgradeMachineGun()
+    public static void UpgradeMachineGun(string index)
     {
         EntityManager.Instance.player.weaponManager.Add("MachineGun");
 
     }
-    public static void SummonDamageBattery()
+    public static void SummonDamageBattery(string index)
     {
 
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
         go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         go.GetComponent<DamageBattery>().Init();
     }
-    public static void SummonSlowBattery()
+    public static void SummonSlowBattery(string index)
     {
 
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/SlowBattery");
         go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         go.GetComponent<SlowBattery>().Init();
     }
-    public static void SummonNormalBattery()
+    public static void SummonNormalBattery(string index)
     {
 
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/NormalBattery");
