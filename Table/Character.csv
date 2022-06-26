@@ -1,7 +1,7 @@
 ﻿Character,Health,MoveSpeed,DPS,AttackDistance,DetectionRadius,PowerRate,HPS,Energy
 Player,100,4,,,,,,
 BaseChild,5,1.5,10,1.5,,,,8
-NormalBattery,100,,,,3,,10,
+NormalBattery,100,,,,9,,10,
 SlowBattery,100,,,,5,0.2,50,
 DamageBattery,100,,1,,4,,20,
 EggChild,5,1.5,10,1.5,,,,19
