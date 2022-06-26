@@ -26,7 +26,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     // 当前关卡持续时间分钟数（游戏内时间）
     public int MaxTime = 24 * GameDateTime.MinutesPerHour;
     // 目前已经经过的分钟数（游戏内时间）
-    private int TimeDiff => (GameMgr.Get<IGameTimeManager>().GetNow() - StartTime).TotalMinutes;
+    public int TimeDiff => (GameMgr.Get<IGameTimeManager>().GetNow() - StartTime).TotalMinutes;
 
     private List<Buff> ChildBuffTable = new List<Buff>();
     private readonly int InfiniteTime = int.MaxValue;

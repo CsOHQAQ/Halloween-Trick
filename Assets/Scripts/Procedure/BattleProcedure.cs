@@ -14,6 +14,7 @@ public class BattleProcedure : ProcedureBase
         ResourceManager.Instance.Instantiate("Prefabs/Aimer");
         UIManager.Instance.Open("EnergySlide");
         UIManager.Instance.Open("HandCardSlot");
+        UIManager.Instance.Open("TimerUI");
         GameDateTime night = new GameDateTime
         {
             Days = GameMgr.Get<IGameTimeManager>().GetNow().Days,
@@ -29,6 +30,7 @@ public class BattleProcedure : ProcedureBase
         GameObject.DestroyImmediate(GameObject.Find("Aimer"));
         UIManager.Instance.Close("EnergySlide");
         UIManager.Instance.Close("HandCardSlot");
+        UIManager.Instance.Close("TimerUI");
         EntityManager.Instance.ClearAll();
     }
 }
