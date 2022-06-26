@@ -31,6 +31,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     private List<Buff> ChildBuffTable = new List<Buff>();
     private readonly int InfiniteTime = int.MaxValue;
 
+    private bool reminder1 = false,
+                 reminder2 = false,
+                 reminder3 = false;
+
     /// <summary>
     /// 返回一个给定范围?的服从正态分布的随机数
     /// </summary>
@@ -96,6 +100,21 @@ public class EntityManager : MonoSingleton<EntityManager>
             if (TimeDiff >= MaxTime)
             {
                 ProcedureManager.Instance.ChangeTo("ShopProcedure");
+            }
+            else if (!reminder1 && TimeDiff >= MaxTime / 2)
+            {
+                reminder1 = true;
+                UIManager.Instance.Open("ReminderUI", args: "时间过半，所有小朋友移速提升！");
+            }
+            else if (!reminder2 && TimeDiff >= MaxTime * 2 / 3)
+            {
+                reminder2 = true;
+                UIManager.Instance.Open("ReminderUI", args: "时间过三分之二，所有远程小朋友精度和范围提升！");
+            }
+            else if (!reminder3 && TimeDiff >= MaxTime * 3 / 4)
+            {
+                reminder3 = true;
+                UIManager.Instance.Open("ReminderUI", args: "时间过四分之三，所有远程小朋友射速和CD提升！");
             }
         }
 
