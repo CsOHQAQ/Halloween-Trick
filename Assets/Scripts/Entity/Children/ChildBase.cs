@@ -55,7 +55,10 @@ public class ChildBase : Entity
     {
         Debug.Log(name + "濒死");
 
-        EntityManager.Instance.AddEnergy(this);
+        if (Data.CurHealth <= 0) // 是被玩家打死的 而不是被孩子王创死的
+        {
+            EntityManager.Instance.AddEnergy(this);
+        }
         animator.SetBool("IsAttack", false);
         animator.SetBool("IsDead", true);
 

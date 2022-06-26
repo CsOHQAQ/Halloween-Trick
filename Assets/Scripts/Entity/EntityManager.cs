@@ -76,7 +76,9 @@ public class EntityManager : MonoSingleton<EntityManager>
             count = 0;
             // 只在生成前维护Buff表 节省开销
             UpdateBuffTable();
-            SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
+            //SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
+            SpawnEnemy(GetMaxDiffByTime());
+
         }
 
         if(ProcedureManager.Instance.Current is BattleProcedure)
@@ -127,7 +129,63 @@ public class EntityManager : MonoSingleton<EntityManager>
         ChildBuffTable.Add(new Buff_StopPower((float)TimeDiff / 360)); // 3个小时+初始的一倍
     }
 
-    public void SpawnEnemy(Vector2 spawnPos,int maxDiff)
+    public void SpawnEnemy(int maxDiff)
+    {
+        float totalDiff = 0;
+        int randRow;
+        float x, y;
+        string childType;
+        float difficulty;
+        Entity ent;
+        Vector2 spawnPos;
+
+        do
+        {
+            //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
+
+            // 前12小时不会生成远程怪，前18小时不会生成孩子王
+            int maxRow;
+            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 76;
+            }
+            else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 75;
+            }
+            else
+            {
+                maxRow = 60;
+            }
+            randRow = Random.Range(0, maxRow);
+
+            childType = (string)spawnData[randRow, 0];
+            difficulty = (float)spawnData[randRow, 1];
+            ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
+            ent.Init();
+            ent.LastInit();
+            spawnPos = OutScreenPosition();
+            x = RandNormalDistribution(spawnPos.x, 2);
+            y = RandNormalDistribution(spawnPos.y, 2);
+            ent.transform.position = new Vector3(x, y);
+            foreach (Buff buff in ChildBuffTable)
+            {
+                ent.buffManager.AddBuff(buff, InfiniteTime);
+            }
+
+            totalDiff += difficulty;
+            allEntities.Add(ent);
+        }
+        while (totalDiff < maxDiff);
+
+        //ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
+        //ent.Init();
+        //x = RandNormalDistribution(spawnPos.x, 2);
+        //y = RandNormalDistribution(spawnPos.y, 2);
+        //ent.transform.position = new Vector3(x, y);
+    }
+
+    public void SpawnEnemy(Vector2 spawnPos, int maxDiff)
     {
         float totalDiff = 0;
         int randRow;
@@ -214,31 +272,31 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             case 1://上
                 {
-                    x = Random.value * (right - left);
-                    y = RandNormalDistribution(up + 5, 1);
+                    x = Random.value * (right - left) + left;
+                    y = RandNormalDistribution(up + 5, up);
                     break;
                 }
             case 2:
                 {
-                    x = Random.value * (right - left);
-                    y = RandNormalDistribution(down - 5, 1);
+                    x = Random.value * (right - left) + left;
+                    y = RandNormalDistribution(down - 5, down);
                     break;
                 }
             case 3:
                 {
-                    x = RandNormalDistribution(left - 5, 1);
-                    y = Random.value * (down - up);
+                    x = RandNormalDistribution(left - 5, left);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
             case 4:
                 {
-                    x = RandNormalDistribution(right + 5, 1);
-                    y = Random.value * (down - up);
+                    x = RandNormalDistribution(right + 5, right);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
             default:
                 {
-                    x = RandNormalDistribution(right + 5, 1);
+                    x = RandNormalDistribution(right + 5, right);
                     y = Random.value * (down - up);
                     break;
                 }
