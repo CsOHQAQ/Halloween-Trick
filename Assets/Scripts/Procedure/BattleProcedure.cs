@@ -9,7 +9,8 @@ public class BattleProcedure : ProcedureBase
     {
         base.OnEnter(args);
         EntityManager.Instance.Init();
-        CardManager.Instance.Init();
+		MapManager.Instance.Init();
+		CardManager.Instance.Init();
         ResourceManager.Instance.Instantiate("Prefabs/Aimer");
         UIManager.Instance.Open("EnergySlide");
         UIManager.Instance.Open("HandCardSlot");
