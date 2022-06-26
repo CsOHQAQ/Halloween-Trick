@@ -288,7 +288,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 7
+  m_Constraints: 4
 --- !u!114 &138877133
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,4 +319,4 @@ MonoBehaviour:
   - {x: -0.9766171, y: -1.1267695, z: 0}
   m_ShapePathHash: 1086474167
   m_Mesh: {fileID: 0}
-  m_InstanceId: -427204
+  m_InstanceId: 35224

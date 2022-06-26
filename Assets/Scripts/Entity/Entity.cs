@@ -39,6 +39,12 @@ public class Entity :MonoBehaviour
         Data.changer = buffManager.entityChanger;
     }
 
+    // 在Init调用完毕后调用 解决血量上限Buff的问题
+    public virtual void LastInit()
+    {
+        lastMaxHealth = data.MaxHealth;
+    }
+
     public virtual void Update()    
     {
         if (Data.CurHealth <= 0)
@@ -54,7 +60,7 @@ public class Entity :MonoBehaviour
             }
         }
         
-        if (Data.MaxHealth != lastMaxHealth && lastMaxHealth != 0)
+        if (Data.MaxHealth != lastMaxHealth)
         {
             Data.CurHealth += (Data.MaxHealth - lastMaxHealth);
             if (Data.CurHealth <= 0)
