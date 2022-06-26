@@ -71,33 +71,6 @@ public class PlayerEntity : Entity
         }
 
 
-        //测试部分
-        if (Input.GetKeyDown(KeyCode.U))
-        {
-            if (flag == false)
-            {
-                Debug.Log("测试buff");
-                TestBuff();
-            }
-            else
-            {
-                Debug.Log("取消测试buff");
-                buffManager.RemoveAllBuff();
-            }
-            flag = !flag;
-        }
-        TestBattery();
-
-        TestProcedure();
-        // 获得全武器
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            weaponManager.Add("ShotGun");
-            weaponManager.Add("SubMachineGun");
-            weaponManager.Add("MachineGun");
-        }
-
-        Debug.Log("MaxHealth" + Data.MaxHealth + "CurHealth" + Data.CurHealth);
     }
 
     private bool flag = false;

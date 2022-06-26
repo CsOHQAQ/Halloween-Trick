@@ -24,7 +24,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     // 开始游戏时间
     private GameDateTime StartTime;
     // 当前关卡持续时间分钟数（游戏内时间）
-    public int MaxTime = 24 * GameDateTime.MinutesPerHour;
+    public int MaxTime = 5 * GameDateTime.MinutesPerHour;
     // 目前已经经过的分钟数（游戏内时间）
     public int TimeDiff => (GameMgr.Get<IGameTimeManager>().GetNow() - StartTime).TotalMinutes;
 

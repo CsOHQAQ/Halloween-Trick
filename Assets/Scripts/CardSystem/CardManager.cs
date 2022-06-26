@@ -14,6 +14,7 @@ public class CardManager : MonoSingleton<CardManager>
     public int CurSelect;
     public float CurMoney;
     private TableAgent tab;
+    private List<CardBase> NoReapeat;
     /// <summary>
     /// 这个是最初的初始化，只执行一次
     /// </summary>
@@ -23,8 +24,8 @@ public class CardManager : MonoSingleton<CardManager>
         tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Card").text);
         CargoCard = new List<CardBase>();
         CurMoney = 0;
-
-        List<int> StartCard = new List<int> { 1001,2001,1001,2001,4001,4001,5001,7001,9001,8001};
+        NoReapeat = new List<CardBase>();
+        List<int> StartCard = new List<int> { 1001,2001,9001,2002,4001,1101,5001,7001,9001,8001,1201,1202};
         foreach(var id in StartCard)
         {
             CardBase card = new CardBase(id);
@@ -36,13 +37,23 @@ public class CardManager : MonoSingleton<CardManager>
     /// </summary>
     public void Init()
     {
-        HandCard = new List<CardBase>();
+        foreach(var c in NoReapeat)
+        {
+            CargoCard.Add(c);
+        }
 
+        HandCard = new List<CardBase>();
+        NoReapeat = new List<CardBase>();
     }
 
     public void DrawCardFromCargo()
     {
         int p = UnityEngine.Random.Range(0, CargoCard.Count);
+        if ((int)(CargoCard[p].ID / 100) == 11)
+        {
+            NoReapeat.Add(CargoCard[p]);
+            CargoCard.RemoveAt(p);
+        }
         CardBase card = new CardBase(CargoCard[p].ID);
         HandCard.Add(card);
         UIBase ui= UIManager.Instance.Open("CardUI", 2, "", card);

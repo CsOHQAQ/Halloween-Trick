@@ -8,12 +8,16 @@ public class StartUI : UIBase
     public override void OnDisplay(object args)
     {
         base.OnDisplay(args);
-        GetComponent<Button>().onClick.AddListener(() =>
+        _gos["Start"]. GetComponent<Button>().onClick.AddListener(() =>
         {
             CardManager.Instance.Initialize();
             ProcedureManager.Instance.ChangeTo<BattleProcedure>();
         }
         );
+        _gos["Quit"].GetComponent<Button>().onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
     }
     protected override void OnClose()
     {

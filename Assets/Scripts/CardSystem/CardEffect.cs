@@ -75,6 +75,7 @@ public class CardEffect
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/DamageBattery");
         go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         go.GetComponent<DamageBattery>().Init();
+        EntityManager.Instance.allEntities.Add(go.GetComponent<Entity>());
     }
     public static void SummonSlowBattery(string index)
     {
@@ -82,6 +83,7 @@ public class CardEffect
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/SlowBattery");
         go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         go.GetComponent<SlowBattery>().Init();
+        EntityManager.Instance.allEntities.Add(go.GetComponent<Entity>());
     }
     public static void SummonNormalBattery(string index)
     {
@@ -89,6 +91,7 @@ public class CardEffect
         GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/NormalBattery");
         go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
         go.GetComponent<NormalBattery>().Init();
+        EntityManager.Instance.allEntities.Add(go.GetComponent<Entity>());
     }
 
 }
