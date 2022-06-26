@@ -18,6 +18,9 @@ public class EntityManager : MonoSingleton<EntityManager>
     //protected TableAgent spawnTab;
     protected object[,] spawnData; //[行数, 数据类型(0-Type 1-Difficulty)
 
+    // 开始游戏时间
+    private GameDateTime StartTime;
+
     /// <summary>
     /// 返回一个给定范围?的服从正态分布的随机数
     /// </summary>
@@ -51,6 +54,8 @@ public class EntityManager : MonoSingleton<EntityManager>
         spawnTab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/ChildSpawn").text);
         System.Type[] types = { typeof(string), typeof(float) };
         spawnData = spawnTab.GetAllEntries("ChildSpawn", types);
+
+        StartTime = GameMgr.Get<IGameTimeManager>().GetNow();
     }
 
     private void Update()
@@ -59,11 +64,17 @@ public class EntityManager : MonoSingleton<EntityManager>
         if (count >= 10)
         {
             Debug.Log("生成人物");
-            count =0;
-            SpawnEnemy(OutScreenPosition(), 20);
+            count = 0;
+            SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
         }
     }
 
+    private int GetMaxDiffByTime()
+    {
+
+
+        return 0;
+    }
 
     public void SpawnEnemy(Vector2 spawnPos,int maxDiff)
     {
