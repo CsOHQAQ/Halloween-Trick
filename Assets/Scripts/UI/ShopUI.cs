@@ -17,10 +17,12 @@ public class ShopUI : UIBase
         {
             UIBase sellCard = UIManager.Instance.Open("SellCardSlot", 2, "", new CardBase(CardManager.Instance.DrawCardFromAll()));
             sellCard.transform.SetParent(_gos["SellCardList"].transform);
+
+            int order = i;
             sellCard.GetComponent<Button>().onClick.AddListener(() =>
             {
                 curChooseShop = true;
-                curChoosePos = i;
+                curChoosePos = order;
                 ChangeHighLight(sellCard.GetComponent<CardSlotUI>());
                 ShowInfo(sellCard.GetComponent<CardSlotUI>().cardUI.card);
             });
@@ -44,7 +46,7 @@ public class ShopUI : UIBase
             CardManager.Instance.CargoCard.Add(cardSlot.cardUI.card);
             CardManager.Instance.CurMoney -= cardSlot.cardUI.card.cost;
             cardSlot.GetComponent<Button>().interactable = false;
-
+            Refresh();
         });
 
         _gos["DeleteBtn"].GetComponent<Button>().onClick.AddListener(() =>
