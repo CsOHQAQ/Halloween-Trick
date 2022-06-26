@@ -32,5 +32,6 @@ public class BattleProcedure : ProcedureBase
         UIManager.Instance.Close("HandCardSlot");
         UIManager.Instance.Close("TimerUI");
         EntityManager.Instance.ClearAll();
+        MapManager.Instance.ClearAll();
     }
 }

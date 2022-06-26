@@ -123,7 +123,7 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     private int GetMaxDiffByTime()
     {
-        return Mathf.RoundToInt(4 * (1 + (float)TimeDiff / 360)); // 3个小时+初始的一倍
+        return Mathf.RoundToInt(4 * (1 + (float)TimeDiff / 60)); // 1个小时+初始的一倍
     }
 
     private void UpdateBuffTable()
@@ -149,9 +149,9 @@ public class EntityManager : MonoSingleton<EntityManager>
         }
 
         // 增强生命值、DPS和武器伤害
-        ChildBuffTable.Add(new Buff_MaxHealth((float)TimeDiff / 360)); // 3个小时+初始的一倍
-        ChildBuffTable.Add(new Buff_DPS((float)TimeDiff / 360)); // 3个小时+初始的一倍
-        ChildBuffTable.Add(new Buff_StopPower((float)TimeDiff / 360)); // 3个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_MaxHealth((float)TimeDiff / 60)); // 1个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_DPS((float)TimeDiff / 60)); // 1个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_StopPower((float)TimeDiff / 60)); // 1个小时+初始的一倍
     }
 
     public void SpawnEnemy(int maxDiff)
@@ -168,13 +168,13 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
 
-            // 前12小时不会生成远程怪，前18小时不会生成孩子王
+            // 前2小时不会生成远程怪，前3小时不会生成孩子王
             int maxRow;
-            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
+            if (TimeDiff > 3 * GameDateTime.MinutesPerHour)
             {
                 maxRow = 76;
             }
-            else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
+            else if (TimeDiff > 2 * GameDateTime.MinutesPerHour)
             {
                 maxRow = 75;
             }
@@ -223,15 +223,15 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
 
-            // 前12小时不会生成远程怪，前18小时不会生成孩子王
+            // 前2小时不会生成远程怪，前3小时不会生成孩子王
             int maxRow;
-            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
+            if (TimeDiff > 3 * GameDateTime.MinutesPerHour)
             {
                 maxRow = 76;
             }
             else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
             {
-                maxRow = 75;
+                maxRow = 2;
             }
             else
             {
