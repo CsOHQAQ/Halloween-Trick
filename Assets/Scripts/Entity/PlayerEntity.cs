@@ -145,6 +145,7 @@ public class PlayerEntity : Entity
     }
     public override void BeforeDestroy()
     {
+        //Debug.Log("")
         ProcedureManager.Instance.ChangeTo("ShopProcedure");
     }
 }

@@ -74,20 +74,21 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     private void Update()
     {
-        count += Time.deltaTime;
-        if (count >= 10)
-        {
-            Debug.Log("生成人物");
-            count = 0;
-            // 只在生成前维护Buff表 节省开销
-            UpdateBuffTable();
-            //SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
-            SpawnEnemy(GetMaxDiffByTime());
 
-        }
 
         if(ProcedureManager.Instance.Current is BattleProcedure)
         {
+            count += Time.deltaTime;
+            if (count >= 10)
+            {
+                Debug.Log("生成人物");
+                count = 0;
+                // 只在生成前维护Buff表 节省开销
+                UpdateBuffTable();
+                //SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
+                SpawnEnemy(GetMaxDiffByTime());
+
+            }
             //if (GameMgr.Get<IGameTimeManager>().GetNow().Hours <= 1)
             //{
             //    ProcedureManager.Instance.ChangeTo("ShopProcedure");
