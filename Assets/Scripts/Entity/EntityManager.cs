@@ -21,7 +21,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     // 开始游戏时间
     private GameDateTime StartTime;
     // 当前关卡持续时间分钟数（游戏内时间）
-    public int MaxTime = 18 * GameDateTime.MinutesPerHour;
+    public int MaxTime = 24 * GameDateTime.MinutesPerHour;
     // 目前已经经过的分钟数（游戏内时间）
     private int TimeDiff => (GameMgr.Get<IGameTimeManager>().GetNow() - StartTime).TotalMinutes;
 
@@ -140,13 +140,13 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
 
-            // 前6小时不会生成远程怪，前12小时不会生成孩子王
+            // 前12小时不会生成远程怪，前18小时不会生成孩子王
             int maxRow;
-            if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
+            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
             {
                 maxRow = 76;
             }
-            else if (TimeDiff > 6 * GameDateTime.MinutesPerHour)
+            else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
             {
                 maxRow = 75;
             }
