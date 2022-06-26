@@ -49,15 +49,12 @@ public class Entity :MonoBehaviour
     {
         if (Data.CurHealth <= 0)
         {
-            if (gameObject.layer == 9 || gameObject.layer == 10)
-            {
                 if (!isDestorying)
                 {
                     BeforeDestroy();
                     isDestorying = true;
                 }
                 
-            }
         }
         
         if (Data.MaxHealth != lastMaxHealth)
