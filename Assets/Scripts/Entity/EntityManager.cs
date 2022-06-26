@@ -149,7 +149,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         }
 
         // 增强生命值、DPS和武器伤害
-        ChildBuffTable.Add(new Buff_MaxHealth((float)TimeDiff / 60)); // 1个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_MaxHealth((float)TimeDiff / 120)); // 2个小时+初始的一倍
         ChildBuffTable.Add(new Buff_DPS((float)TimeDiff / 60)); // 1个小时+初始的一倍
         ChildBuffTable.Add(new Buff_StopPower((float)TimeDiff / 60)); // 1个小时+初始的一倍
     }
