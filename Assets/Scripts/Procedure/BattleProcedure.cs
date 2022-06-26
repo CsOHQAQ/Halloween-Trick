@@ -9,6 +9,7 @@ public class BattleProcedure : ProcedureBase
     {
         base.OnEnter(args);
         EntityManager.Instance.Init();
+        MapManager.Instance.Init();
         ResourceManager.Instance.Instantiate("Prefabs/Aimer");
         UIManager.Instance.Open("EnergySlide");
     }
