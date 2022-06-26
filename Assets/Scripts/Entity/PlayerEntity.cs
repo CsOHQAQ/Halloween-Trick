@@ -18,7 +18,8 @@ public class PlayerEntity : Entity
         data.MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
         //测试用
-        weaponManager.Add("MachineGun");
+        //weaponManager.Add("MachineGun");
+        weaponManager.Add("HandGun");
 
     }
     private void Start()
@@ -86,6 +87,14 @@ public class PlayerEntity : Entity
             flag = !flag;
         }
         TestBattery();
+
+        // 获得全武器
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            weaponManager.Add("ShotGun");
+            weaponManager.Add("SubMachineGun");
+            weaponManager.Add("MachineGun");
+        }
     }
 
     private bool flag = false;
@@ -123,5 +132,9 @@ public class PlayerEntity : Entity
             go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
             go.GetComponent<SlowBattery>().Init();
         }
+    }
+    public override void BeforeDestroy()
+    {
+        ProcedureManager.Instance.ChangeTo("ShopProcedure");
     }
 }

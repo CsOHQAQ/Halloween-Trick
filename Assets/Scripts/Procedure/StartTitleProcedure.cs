@@ -11,7 +11,12 @@ public class StartTitleProcedure : ProcedureBase
     protected override void OnEnter(object args)
     {
         base.OnEnter(args);
+
+        App.Common.Data.Instance.SetTableAgent();
+        GameMgr.Instance.InitModules();
         UIManager.Instance.Open("StartUI");
+        GameMgr.Get<IGameTimeManager>().Pause();
+
     }
     protected override void OnLeave()
     {

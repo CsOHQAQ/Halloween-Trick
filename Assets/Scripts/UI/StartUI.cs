@@ -10,6 +10,7 @@ public class StartUI : UIBase
         base.OnDisplay(args);
         GetComponent<Button>().onClick.AddListener(() =>
         {
+            CardManager.Instance.Initialize();
             ProcedureManager.Instance.ChangeTo<BattleProcedure>();
         }
         );

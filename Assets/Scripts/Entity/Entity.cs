@@ -20,6 +20,7 @@ public class Entity :MonoBehaviour
     private UIBase healthSlideUI;
     protected TableAgent tab;
     public EntityType type;
+    private bool isDestorying = false;
     public virtual void Init()
     {
         tab = new TableAgent();
@@ -38,17 +39,28 @@ public class Entity :MonoBehaviour
         Data.changer = buffManager.entityChanger;
     }
 
+    // 在Init调用完毕后调用 解决血量上限Buff的问题
+    public virtual void LastInit()
+    {
+        lastMaxHealth = data.MaxHealth;
+    }
+
     public virtual void Update()    
     {
         if (Data.CurHealth <= 0)
         {
             if (gameObject.layer == 9 || gameObject.layer == 10)
             {
-                BeforeDestroy();
+                if (!isDestorying)
+                {
+                    BeforeDestroy();
+                    isDestorying = true;
+                }
+                
             }
         }
         
-        if (Data.MaxHealth != lastMaxHealth && lastMaxHealth != 0)
+        if (Data.MaxHealth != lastMaxHealth)
         {
             Data.CurHealth += (Data.MaxHealth - lastMaxHealth);
             if (Data.CurHealth <= 0)

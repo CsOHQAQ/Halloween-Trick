@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using QxFramework.Core;
 
 public class CardBase 
 {
@@ -10,23 +11,20 @@ public class CardBase
     public string skill;
     public string Name;
     public int ID;
-
-    public virtual void Use()
+    public void Init(int iD)
     {
+        TableAgent tab = new TableAgent();
+        ID = iD;
 
+        tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Card").text);
+        cost = tab.GetFloat("Card", ID.ToString(), "Cost");
+        Description= tab.GetString("Card", ID.ToString(), "Description");
+        imgPath = tab.GetString("Card", ID.ToString(), "ImgPath");
+        skill = tab.GetString("Card", ID.ToString(), "Skill");
+        Name = tab.GetString("Card", ID.ToString(), "Name");
     }
-    public virtual void Destory()
+    public CardBase(int id)
     {
-
+        Init(id);
     }
-
-    /// <summary>
-    /// 将ref传进来的card按照这个实例复制一张
-    /// </summary>
-    /// <param name="card"></param>
-    public virtual void Copy<T>(ref T card)where T:CardBase
-    {
-
-    }
-    
 }

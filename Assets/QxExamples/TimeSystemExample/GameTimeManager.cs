@@ -107,7 +107,7 @@ public class GameTimeManager : LogicModuleBase,IGameTimeManager
         //如果单纯的被停了
         if (_playing && App.Common.Data.Instance.TimeSize > 0)
         {
-            StepMinute(Time.fixedDeltaTime / App.Common.Data.Instance.TimeSize);
+            StepMinute(Time.fixedDeltaTime *10);
         }
     }
     public override void Update()
