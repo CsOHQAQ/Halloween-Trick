@@ -59,7 +59,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         CurEnergy = 0;
         allEntities = new List<Entity>();
 
-        count = 8;
+        count = 4;
         allEntities = new List<Entity>();
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
@@ -83,7 +83,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         if(ProcedureManager.Instance.Current is BattleProcedure)
         {
             count += Time.deltaTime;
-            if (count >= 10)
+            if (count >= 5)
             {
                 Debug.Log("生成人物");
                 count = 0;
@@ -123,7 +123,7 @@ public class EntityManager : MonoSingleton<EntityManager>
 
     private int GetMaxDiffByTime()
     {
-        return Mathf.RoundToInt(5 * (1 + (float)TimeDiff / 360)); // 3个小时+初始的一倍
+        return Mathf.RoundToInt(4 * (1 + (float)TimeDiff / 360)); // 3个小时+初始的一倍
     }
 
     private void UpdateBuffTable()

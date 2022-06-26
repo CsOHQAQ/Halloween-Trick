@@ -7,12 +7,13 @@ using QxFramework.Core;
 public class ReminderUI : UIBase
 {
     private Text text;
-    private float counter = 3f;
+    private float counter;
     public override void OnDisplay(object args)
     {
         base.OnDisplay(args);
         text = _gos["Text"].GetComponent<Text>();
         text.text = (string)args;
+        counter = 3f;
     }
     private void Update()
     {
