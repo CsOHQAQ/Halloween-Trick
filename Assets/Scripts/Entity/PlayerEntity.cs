@@ -95,6 +95,8 @@ public class PlayerEntity : Entity
             weaponManager.Add("SubMachineGun");
             weaponManager.Add("MachineGun");
         }
+
+        Debug.Log("MaxHealth" + Data.MaxHealth + "CurHealth" + Data.CurHealth);
     }
 
     private bool flag = false;

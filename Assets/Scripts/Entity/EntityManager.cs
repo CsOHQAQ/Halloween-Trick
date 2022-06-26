@@ -12,7 +12,10 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<Entity> allEntities;
 
     public float CurEnergy;
-    public float MaxEnergy=10;
+    private readonly float EnergyGap = 10;
+    public float MaxEnergy = 0;
+    public int EnergyLevel = 0;
+
     private float count;
 
     //protected TableAgent spawnTab;
@@ -48,6 +51,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void Init()
     {
+        MaxEnergy = EnergyGap;
         CurEnergy = 0;
         allEntities = new List<Entity>();
 
@@ -56,6 +60,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
         player.Init();
+        player.LastInit();
 
         // 初始化小孩生成
         TableAgent spawnTab = new TableAgent();
@@ -93,12 +98,12 @@ public class EntityManager : MonoSingleton<EntityManager>
             }
         }
 
-        Debug.Log(GetMaxDiffByTime());
+        //Debug.Log(GetMaxDiffByTime());
     }
 
     private int GetMaxDiffByTime()
     {
-        return Mathf.RoundToInt(5 * (1 + (float)TimeDiff / 240)); // 2个小时+初始的一倍
+        return Mathf.RoundToInt(5 * (1 + (float)TimeDiff / 360)); // 3个小时+初始的一倍
     }
 
     private void UpdateBuffTable()
@@ -245,6 +250,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Character").text);
         
         CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
+        CurEnergy *= ent.Data.MaxHealth / ent.data.MaxHealth; //怪物越强给的越多
         Debug.Log("增加能量" + tab.GetFloat("Character", ent.type.ToString(), "Energy"));
         if (CurEnergy >= MaxEnergy)
         {
@@ -253,7 +259,8 @@ public class EntityManager : MonoSingleton<EntityManager>
             {
                 CardManager.Instance.DrawCardFromCargo();
                 CurEnergy = 0;
-                MaxEnergy += 10;
+                EnergyLevel++;
+                MaxEnergy += EnergyGap * (1 + (float)EnergyLevel / 10);
             }
         }
     }
@@ -273,31 +280,31 @@ public class EntityManager : MonoSingleton<EntityManager>
             case 1://上
                 {
                     x = Random.value * (right - left) + left;
-                    y = RandNormalDistribution(up + 5, up);
+                    y = RandNormalDistribution(up + 5, 1);
                     break;
                 }
             case 2:
                 {
                     x = Random.value * (right - left) + left;
-                    y = RandNormalDistribution(down - 5, down);
+                    y = RandNormalDistribution(down - 5, 1);
                     break;
                 }
             case 3:
                 {
-                    x = RandNormalDistribution(left - 5, left);
+                    x = RandNormalDistribution(left - 5, 1);
                     y = Random.value * (down - up) + down;
                     break;
                 }
             case 4:
                 {
-                    x = RandNormalDistribution(right + 5, right);
+                    x = RandNormalDistribution(right + 5, 1);
                     y = Random.value * (down - up) + down;
                     break;
                 }
             default:
                 {
-                    x = RandNormalDistribution(right + 5, right);
-                    y = Random.value * (down - up);
+                    x = RandNormalDistribution(right + 5, 1);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
         }
