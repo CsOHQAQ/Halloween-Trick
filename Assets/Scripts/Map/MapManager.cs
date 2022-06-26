@@ -25,6 +25,10 @@ public class MapManager : MonoSingleton<MapManager>
         maps[0].isFree = false;
         rendWidth = maps[0].render.bounds.size.x;
         rendHeight = maps[0].render.bounds.size.y;
+        //初始化把其他几张地图赛旁边去
+        maps[1].render.transform.position += new Vector3(rendWidth, 0, 0);
+        maps[2].render.transform.position += new Vector3(-rendWidth, 0, 0);
+        maps[3].render.transform.position += new Vector3(0,rendHeight, 0);
     }
 
     private void Update()

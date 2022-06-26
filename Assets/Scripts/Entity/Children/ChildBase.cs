@@ -32,7 +32,7 @@ public class ChildBase : Entity
         // 如果和玩家距离小于等于帧伤攻击距离 对玩家造成帧伤
         if (Vector2.Distance(transform.position, playerPos) <= attackDistance)
         {
-            if (animator != null) animator.SetBool("IsAttack", true);
+            if (animator != null&&animator) animator.SetBool("IsAttack", true);
             EntityManager.Instance.player.Data.CurHealth -= Data.DPS * Time.deltaTime;
         }
         else
@@ -55,7 +55,10 @@ public class ChildBase : Entity
     {
         Debug.Log(name + "濒死");
 
-        EntityManager.Instance.AddEnergy(this);
+        if (Data.CurHealth <= 0) // 是被玩家打死的 而不是被孩子王创死的
+        {
+            EntityManager.Instance.AddEnergy(this);
+        }
         animator.SetBool("IsAttack", false);
         animator.SetBool("IsDead", true);
 

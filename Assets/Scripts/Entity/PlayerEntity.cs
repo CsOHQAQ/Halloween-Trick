@@ -18,7 +18,8 @@ public class PlayerEntity : Entity
         data.MoveSpeed = tab.GetFloat("Character", "Player", "MoveSpeed");
 
         //测试用
-        weaponManager.Add("MachineGun");
+        //weaponManager.Add("MachineGun");
+        weaponManager.Add("HandGun");
 
     }
     private void Start()
@@ -86,7 +87,17 @@ public class PlayerEntity : Entity
             flag = !flag;
         }
         TestBattery();
+
         TestProcedure();
+        // 获得全武器
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            weaponManager.Add("ShotGun");
+            weaponManager.Add("SubMachineGun");
+            weaponManager.Add("MachineGun");
+        }
+
+        Debug.Log("MaxHealth" + Data.MaxHealth + "CurHealth" + Data.CurHealth);
     }
 
     private bool flag = false;

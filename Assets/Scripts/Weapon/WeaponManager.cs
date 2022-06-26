@@ -42,7 +42,7 @@ public class WeaponManager : MonoBehaviour
     /// <param name="Name"></param>
     public void Add(string Name)
     {
-        if (EquipWeapon.Count < 2)
+        //if (EquipWeapon.Count < 2)
         {
             GameObject g = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Gun/"+Name,transform);
             CurWeapon = g.GetComponent<WeaponBase>();

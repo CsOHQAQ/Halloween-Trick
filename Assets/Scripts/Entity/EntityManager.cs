@@ -12,11 +12,24 @@ public class EntityManager : MonoSingleton<EntityManager>
     public List<Entity> allEntities;
 
     public float CurEnergy;
-    public float MaxEnergy=10;
+    private readonly float EnergyGap = 10;
+    public float MaxEnergy = 0;
+    public int EnergyLevel = 0;
+
     private float count;
 
     //protected TableAgent spawnTab;
     protected object[,] spawnData; //[行数, 数据类型(0-Type 1-Difficulty)
+
+    // 开始游戏时间
+    private GameDateTime StartTime;
+    // 当前关卡持续时间分钟数（游戏内时间）
+    public int MaxTime = 24 * GameDateTime.MinutesPerHour;
+    // 目前已经经过的分钟数（游戏内时间）
+    private int TimeDiff => (GameMgr.Get<IGameTimeManager>().GetNow() - StartTime).TotalMinutes;
+
+    private List<Buff> ChildBuffTable = new List<Buff>();
+    private readonly int InfiniteTime = int.MaxValue;
 
     /// <summary>
     /// 返回一个给定范围?的服从正态分布的随机数
@@ -38,6 +51,7 @@ public class EntityManager : MonoSingleton<EntityManager>
     }
     public void Init()
     {
+        MaxEnergy = EnergyGap;
         CurEnergy = 0;
         allEntities = new List<Entity>();
 
@@ -46,12 +60,16 @@ public class EntityManager : MonoSingleton<EntityManager>
         player = new PlayerEntity();
         player = ResourceManager.Instance.Instantiate("Prefabs/TestPlayer").GetComponent<PlayerEntity>();
         player.Init();
+        player.LastInit();
 
         // 初始化小孩生成
         TableAgent spawnTab = new TableAgent();
         spawnTab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/ChildSpawn").text);
         System.Type[] types = { typeof(string), typeof(float) };
         spawnData = spawnTab.GetAllEntries("ChildSpawn", types);
+
+        // 获取进入关卡时的时间
+        StartTime = GameMgr.Get<IGameTimeManager>().GetNow();
     }
 
     private void Update()
@@ -60,22 +78,119 @@ public class EntityManager : MonoSingleton<EntityManager>
         if (count >= 10)
         {
             Debug.Log("生成人物");
-            count =0;
-            SpawnEnemy(OutScreenPosition(), 20);
+            count = 0;
+            // 只在生成前维护Buff表 节省开销
+            UpdateBuffTable();
+            //SpawnEnemy(OutScreenPosition(), GetMaxDiffByTime());
+            SpawnEnemy(GetMaxDiffByTime());
+
         }
+
         if(ProcedureManager.Instance.Current is BattleProcedure)
         {
-            if (GameMgr.Get<IGameTimeManager>().GetNow().Hours <= 1)
+            //if (GameMgr.Get<IGameTimeManager>().GetNow().Hours <= 1)
+            //{
+            //    ProcedureManager.Instance.ChangeTo("ShopProcedure");
+            //}
+            if (TimeDiff >= MaxTime)
             {
                 ProcedureManager.Instance.ChangeTo("ShopProcedure");
-
             }
         }
-        
+
+        //Debug.Log(GetMaxDiffByTime());
     }
 
+    private int GetMaxDiffByTime()
+    {
+        return Mathf.RoundToInt(5 * (1 + (float)TimeDiff / 360)); // 3个小时+初始的一倍
+    }
 
-    public void SpawnEnemy(Vector2 spawnPos,int maxDiff)
+    private void UpdateBuffTable()
+    {
+        ChildBuffTable.Clear();
+
+        // 时间过半后，增强所有怪移速20%
+        if (TimeDiff > MaxTime / 2)
+        {
+            ChildBuffTable.Add(new Buff_MoveSpeed(0.2f));
+        }
+        // 时间过2/3后，增强所有远程怪精度20%和范围20%
+        if (TimeDiff > MaxTime * 2 / 3)
+        {
+            ChildBuffTable.Add(new Buff_BaseSpread(-0.2f));
+            ChildBuffTable.Add(new Buff_Range(0.2f));
+        }
+        // 时间过3/4后，增强所有远程怪射速20%和射击CD20%
+        if (TimeDiff > MaxTime * 3 / 4)
+        {
+            ChildBuffTable.Add(new Buff_ShotSpeed(0.2f));
+            ChildBuffTable.Add(new Buff_FireCD(-0.2f));
+        }
+
+        // 增强生命值、DPS和武器伤害
+        ChildBuffTable.Add(new Buff_MaxHealth((float)TimeDiff / 360)); // 3个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_DPS((float)TimeDiff / 360)); // 3个小时+初始的一倍
+        ChildBuffTable.Add(new Buff_StopPower((float)TimeDiff / 360)); // 3个小时+初始的一倍
+    }
+
+    public void SpawnEnemy(int maxDiff)
+    {
+        float totalDiff = 0;
+        int randRow;
+        float x, y;
+        string childType;
+        float difficulty;
+        Entity ent;
+        Vector2 spawnPos;
+
+        do
+        {
+            //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
+
+            // 前12小时不会生成远程怪，前18小时不会生成孩子王
+            int maxRow;
+            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 76;
+            }
+            else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 75;
+            }
+            else
+            {
+                maxRow = 60;
+            }
+            randRow = Random.Range(0, maxRow);
+
+            childType = (string)spawnData[randRow, 0];
+            difficulty = (float)spawnData[randRow, 1];
+            ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
+            ent.Init();
+            ent.LastInit();
+            spawnPos = OutScreenPosition();
+            x = RandNormalDistribution(spawnPos.x, 2);
+            y = RandNormalDistribution(spawnPos.y, 2);
+            ent.transform.position = new Vector3(x, y);
+            foreach (Buff buff in ChildBuffTable)
+            {
+                ent.buffManager.AddBuff(buff, InfiniteTime);
+            }
+
+            totalDiff += difficulty;
+            allEntities.Add(ent);
+        }
+        while (totalDiff < maxDiff);
+
+        //ent = ResourceManager.Instance.Instantiate("Prefabs/Children/ChildKing").GetComponent<Entity>();
+        //ent.Init();
+        //x = RandNormalDistribution(spawnPos.x, 2);
+        //y = RandNormalDistribution(spawnPos.y, 2);
+        //ent.transform.position = new Vector3(x, y);
+    }
+
+    public void SpawnEnemy(Vector2 spawnPos, int maxDiff)
     {
         float totalDiff = 0;
         int randRow;
@@ -86,14 +201,37 @@ public class EntityManager : MonoSingleton<EntityManager>
 
         do
         {
-            randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
+            //randRow = Random.Range(0, spawnData.GetUpperBound(0) + 1);
+
+            // 前12小时不会生成远程怪，前18小时不会生成孩子王
+            int maxRow;
+            if (TimeDiff > 18 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 76;
+            }
+            else if (TimeDiff > 12 * GameDateTime.MinutesPerHour)
+            {
+                maxRow = 75;
+            }
+            else
+            {
+                maxRow = 60;
+            }
+            randRow = Random.Range(0, maxRow);
+
             childType = (string)spawnData[randRow, 0];
             difficulty = (float)spawnData[randRow, 1];
             ent = ResourceManager.Instance.Instantiate("Prefabs/Children/" + childType).GetComponent<Entity>();
             ent.Init();
+            ent.LastInit();
             x = RandNormalDistribution(spawnPos.x, 2);
             y = RandNormalDistribution(spawnPos.y, 2);
             ent.transform.position = new Vector3(x, y);
+            foreach (Buff buff in ChildBuffTable)
+            {
+                ent.buffManager.AddBuff(buff, InfiniteTime);
+            }
+
             totalDiff += difficulty;
             allEntities.Add(ent);
         }
@@ -112,7 +250,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Character").text);
         
         CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
-        CardManager.Instance.CurMoney += tab.GetFloat("Character", ent.type.ToString(), "Energy");
+CardManager.Instance.CurMoney += tab.GetFloat("Character", ent.type.ToString(), "Energy");
         Debug.Log("增加能量" + tab.GetFloat("Character", ent.type.ToString(), "Energy"));
         if (CurEnergy >= MaxEnergy)
         {
@@ -121,7 +259,8 @@ public class EntityManager : MonoSingleton<EntityManager>
             {
                 CardManager.Instance.DrawCardFromCargo();
                 CurEnergy = 0;
-                MaxEnergy += 10;
+                EnergyLevel++;
+                MaxEnergy += EnergyGap * (1 + (float)EnergyLevel / 10);
             }
         }
     }
@@ -140,32 +279,32 @@ public class EntityManager : MonoSingleton<EntityManager>
         {
             case 1://上
                 {
-                    x = Random.value * (right - left);
+                    x = Random.value * (right - left) + left;
                     y = RandNormalDistribution(up + 5, 1);
                     break;
                 }
             case 2:
                 {
-                    x = Random.value * (right - left);
+                    x = Random.value * (right - left) + left;
                     y = RandNormalDistribution(down - 5, 1);
                     break;
                 }
             case 3:
                 {
                     x = RandNormalDistribution(left - 5, 1);
-                    y = Random.value * (down - up);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
             case 4:
                 {
                     x = RandNormalDistribution(right + 5, 1);
-                    y = Random.value * (down - up);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
             default:
                 {
                     x = RandNormalDistribution(right + 5, 1);
-                    y = Random.value * (down - up);
+                    y = Random.value * (down - up) + down;
                     break;
                 }
         }

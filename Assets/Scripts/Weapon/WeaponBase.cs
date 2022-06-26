@@ -59,7 +59,6 @@ public class WeaponBase : MonoBehaviour
                 float RandAngle=Random.Range(dAngleRange*i-Data.BaseSpread,dAngleRange*(i+1) - Data.BaseSpread) +(i-(int)Data.FireTimes/2)*minIntervalAngle;
                 //Debug.Log(RandAngle);
                 Bullet NewBullet = ResourceManager.Instance.Instantiate("Prefabs/Weapon/Bullet/Bullet_"+bulletType).GetComponent<Bullet>();
-                NewBullet.BulletType = bulletType;
                 Vector2 StartPoint = (Vector2)(shootPlace.localPosition + this.transform.localPosition + this.transform.parent.position);
                 NewBullet.Damage = Data.StoppingPower;
                 NewBullet.transform.position = StartPoint;
