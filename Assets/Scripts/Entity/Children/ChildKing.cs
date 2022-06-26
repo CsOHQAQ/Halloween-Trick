@@ -7,7 +7,6 @@ public class ChildKing : ChildBase
     readonly float dashCoolDown = 8f; //冲刺技能冷却
     private float timer = 0f; //冲刺计时器
     private Rigidbody2D body;
-    private Animator animator;
     public override void Init()
     {
         base.Init();

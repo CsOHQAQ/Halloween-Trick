@@ -88,6 +88,7 @@ public class PlayerEntity : Entity
         }
         TestBattery();
 
+        TestProcedure();
         // 获得全武器
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -133,6 +134,13 @@ public class PlayerEntity : Entity
             GameObject go = ResourceManager.Instance.Instantiate("Prefabs/Battery/SlowBattery");
             go.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, 10));
             go.GetComponent<SlowBattery>().Init();
+        }
+    }
+    void TestProcedure()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ProcedureManager.Instance.ChangeTo("ShopProcedure");
         }
     }
     public override void BeforeDestroy()

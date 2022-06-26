@@ -250,7 +250,7 @@ public class EntityManager : MonoSingleton<EntityManager>
         tab.Add(ResourceManager.Instance.Load<TextAsset>("Text/Table/Character").text);
         
         CurEnergy += tab.GetFloat("Character", ent.type.ToString(), "Energy");
-        CurEnergy *= ent.Data.MaxHealth / ent.data.MaxHealth; //怪物越强给的越多
+CardManager.Instance.CurMoney += tab.GetFloat("Character", ent.type.ToString(), "Energy");
         Debug.Log("增加能量" + tab.GetFloat("Character", ent.type.ToString(), "Energy"));
         if (CurEnergy >= MaxEnergy)
         {

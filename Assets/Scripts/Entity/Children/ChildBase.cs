@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChildBase : Entity
 {
     public float attackDistance;
-    private Animator animator;
+    protected Animator animator;
 
     public override void Init()
     {
