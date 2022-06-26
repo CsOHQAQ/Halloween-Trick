@@ -32,38 +32,27 @@ public class Bullet : MonoBehaviour
             {
                 case 1:
                     selfColor= new Color32((byte)255, (byte)0, (byte)0, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
-
                     break;
                 case 2:
                     selfColor=new Color32((byte)255, (byte)255, (byte)0, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 3:
                     selfColor=new Color32((byte)0, (byte)255, (byte)0, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 4:
                     selfColor=new Color32((byte)0, (byte)255, (byte)255, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 5:
                     selfColor=new Color32((byte)0, (byte)0, (byte)255, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 6:
                     selfColor=new Color32((byte)255, (byte)0, (byte)255, (byte)TransValue);
-                    this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
             }
+            if (BulletType == WeaponBase.BulletType.Normal) this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
+            if (BulletType == WeaponBase.BulletType.Normal) this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
+            if (BulletType == WeaponBase.BulletType.Normal)this.transform.GetChild(1).GetComponent<Light2D>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
             this.transform.GetChild(0).GetComponent<TrailRenderer>().endColor = selfColor;
-            this.transform.GetChild(1).GetComponent<Light2D>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
         }
     }
 
