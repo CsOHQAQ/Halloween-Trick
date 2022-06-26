@@ -28,19 +28,19 @@ public class MainDataManager : LogicModuleBase, IMainDataManager
 
     private string ReadFromCSV()
     {
-        return Data.Instance.TableAgent.GetString("Test","1","Value");
+        return App.Common.Data.Instance.TableAgent.GetString("Test","1","Value");
     }
 
     public void LoadFrom()
     {
-        Data.Instance.LoadFromFile("FileName.json");
+        App.Common.Data.Instance.LoadFromFile("FileName.json");
         Debug.Log(_mainData.GetHashCode());
         _mainData.tsd = new TestSaveData();
         _mainData.tsd.vect = new Vector2(1, 14);
     }
     public void SaveTo()
     {
-        Data.Instance.SaveToFile("FileName.json");
+        App.Common.Data.Instance.SaveToFile("FileName.json");
         Debug.Log(_mainData.GetHashCode());
         _mainData.tsd = null;
     }

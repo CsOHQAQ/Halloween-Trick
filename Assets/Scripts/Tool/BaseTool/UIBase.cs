@@ -88,7 +88,7 @@ namespace QxFramework.Core
         protected void RegisterDataUpdate<T>(Action<GameDataBase> action, string key = "Default")
             where T : GameDataBase, new()
         {
-            Data.Instance.RegisterUpdateListener<T>(action,key);
+            App.Common.Data.Instance.RegisterUpdateListener<T>(action,key);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace QxFramework.Core
         protected void RemoveHandler()
         {
             MessageManager.Instance.RemoveAbout(this);
-            Data.Instance.RemoveAbout(this);
+            App.Common.Data.Instance.RemoveAbout(this);
         }
 
         /// <summary>

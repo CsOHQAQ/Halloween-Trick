@@ -16,43 +16,43 @@ TextureImporter:
     second: UI_3
   - first:
       213: 8586885197115800619
-    second: UI_4
+    second: Card_HandGun
   - first:
       213: 8160775752198118580
-    second: UI_5
+    second: Card_SubMachineGun
   - first:
       213: 7448113381798972013
-    second: UI_6
+    second: Card_ShotGun
   - first:
       213: 7843416716369364892
-    second: UI_7
+    second: Card_MachineGun
   - first:
       213: -6595680761151332689
-    second: UI_8
+    second: CardBase
   - first:
       213: -273060469431498887
-    second: UI_9
+    second: Img_Pentration
   - first:
       213: 8391660652416901024
-    second: UI_10
+    second: Img_Damage
   - first:
       213: 9094600903545770030
-    second: UI_11
+    second: Img_ShotSpeed
   - first:
       213: -4532114073746202998
-    second: UI_12
+    second: Img_FireCount
   - first:
       213: -8346291274449466048
-    second: UI_13
+    second: Img_Range
   - first:
       213: -343943630576144839
-    second: UI_14
+    second: Img_MoveSpeed
   - first:
       213: 7301787903208175943
-    second: UI_15
+    second: Img_MaxHealth
   - first:
       213: 1652299931923453484
-    second: UI_16
+    second: Img_EquipSlot
   - first:
       213: 388057999756033245
     second: UI_17
@@ -67,22 +67,28 @@ TextureImporter:
     second: UI_20
   - first:
       213: -256003546741158619
-    second: UI_21
+    second: HandGun
   - first:
       213: 238177201661318622
-    second: UI_22
+    second: SubMachineGun
   - first:
       213: 9084407170249120912
     second: UI_23
   - first:
       213: -4464969597253999955
-    second: UI_24
+    second: shotGunNotFull
   - first:
       213: -7543061489181569089
     second: UI_25
   - first:
       213: -3947773304791079134
-    second: UI_26
+    second: MachineGun
+  - first:
+      213: -7867266084347359734
+    second: UI_27
+  - first:
+      213: 3787343402263556702
+    second: ShotGun
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -176,7 +182,7 @@ TextureImporter:
         width: 96
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -197,7 +203,7 @@ TextureImporter:
         width: 96
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -218,7 +224,7 @@ TextureImporter:
         width: 96
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -239,7 +245,7 @@ TextureImporter:
         width: 96
         height: 153
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,7 +258,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_4
+      name: Card_HandGun
       rect:
         serializedVersion: 2
         x: 32
@@ -260,7 +266,7 @@ TextureImporter:
         width: 96
         height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,7 +279,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_5
+      name: Card_SubMachineGun
       rect:
         serializedVersion: 2
         x: 160
@@ -281,7 +287,7 @@ TextureImporter:
         width: 96
         height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -294,7 +300,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_6
+      name: Card_ShotGun
       rect:
         serializedVersion: 2
         x: 288
@@ -302,7 +308,7 @@ TextureImporter:
         width: 96
         height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -315,7 +321,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_7
+      name: Card_MachineGun
       rect:
         serializedVersion: 2
         x: 416
@@ -323,7 +329,7 @@ TextureImporter:
         width: 96
         height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -336,7 +342,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_8
+      name: CardBase
       rect:
         serializedVersion: 2
         x: 32
@@ -344,7 +350,7 @@ TextureImporter:
         width: 96
         height: 144
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -357,7 +363,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_9
+      name: Img_Pentration
       rect:
         serializedVersion: 2
         x: 180
@@ -365,7 +371,7 @@ TextureImporter:
         width: 46
         height: 62
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -378,7 +384,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_10
+      name: Img_Damage
       rect:
         serializedVersion: 2
         x: 264
@@ -386,7 +392,7 @@ TextureImporter:
         width: 57
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -399,15 +405,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_11
+      name: Img_ShotSpeed
       rect:
         serializedVersion: 2
-        x: 345
+        x: 344
         y: 592
         width: 66
         height: 45
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -420,7 +426,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_12
+      name: Img_FireCount
       rect:
         serializedVersion: 2
         x: 437
@@ -428,7 +434,7 @@ TextureImporter:
         width: 59
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -441,7 +447,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_13
+      name: Img_Range
       rect:
         serializedVersion: 2
         x: 183
@@ -449,7 +455,7 @@ TextureImporter:
         width: 56
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -462,15 +468,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_14
+      name: Img_MoveSpeed
       rect:
         serializedVersion: 2
-        x: 270
+        x: 269
         y: 492
         width: 52
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -483,7 +489,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_15
+      name: Img_MaxHealth
       rect:
         serializedVersion: 2
         x: 354
@@ -491,7 +497,7 @@ TextureImporter:
         width: 59
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,7 +510,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_16
+      name: Img_EquipSlot
       rect:
         serializedVersion: 2
         x: 45
@@ -512,7 +518,7 @@ TextureImporter:
         width: 212
         height: 72
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -533,7 +539,7 @@ TextureImporter:
         width: 400
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -554,7 +560,7 @@ TextureImporter:
         width: 76
         height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -575,7 +581,7 @@ TextureImporter:
         width: 384
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -596,7 +602,7 @@ TextureImporter:
         width: 384
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -609,7 +615,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_21
+      name: HandGun
       rect:
         serializedVersion: 2
         x: 79
@@ -617,7 +623,7 @@ TextureImporter:
         width: 62
         height: 21
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -630,7 +636,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_22
+      name: SubMachineGun
       rect:
         serializedVersion: 2
         x: 177
@@ -638,7 +644,7 @@ TextureImporter:
         width: 51
         height: 34
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -659,7 +665,7 @@ TextureImporter:
         width: 384
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -672,7 +678,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_24
+      name: shotGunNotFull
       rect:
         serializedVersion: 2
         x: 86
@@ -680,7 +686,7 @@ TextureImporter:
         width: 34
         height: 44
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -701,7 +707,7 @@ TextureImporter:
         width: 18
         height: 19
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -714,7 +720,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_26
+      name: MachineGun
       rect:
         serializedVersion: 2
         x: 185
@@ -722,7 +728,7 @@ TextureImporter:
         width: 40
         height: 33
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -730,6 +736,48 @@ TextureImporter:
       bones: []
       spriteID: 22768227811b639c0800000000000000
       internalID: -3947773304791079134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: UI_27
+      rect:
+        serializedVersion: 2
+        x: 178
+        y: 476
+        width: 102
+        height: 27
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a0e4ff8cd2bd1d290800000000000000
+      internalID: -7867266084347359734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ShotGun
+      rect:
+        serializedVersion: 2
+        x: 83
+        y: 236
+        width: 52
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e52b65612c85f8430800000000000000
+      internalID: 3787343402263556702
       vertices: []
       indices: 
       edges: []

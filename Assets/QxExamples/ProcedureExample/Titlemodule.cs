@@ -14,7 +14,7 @@ public class Titlemodule : Submodule {
     private void InitGame()
     {
         UIManager.Instance.Open("HintUI");
-        Data.Instance.SetTableAgent();
+        App.Common.Data.Instance.SetTableAgent();
         GameMgr.Instance.InitModules();
     }
 }

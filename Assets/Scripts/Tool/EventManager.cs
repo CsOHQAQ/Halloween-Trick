@@ -88,7 +88,7 @@ public class EventManager : LogicModuleBase, IEventManager
         {
             //注入数据
             //这种方法可以使各种lua通过xx.xx来调用C#数据
-            foreach (var dic in Data.Instance.GetAllData())
+            foreach (var dic in App.Common.Data.Instance.GetAllData())
             {
                 foreach (var pair in dic.Value)
                 {

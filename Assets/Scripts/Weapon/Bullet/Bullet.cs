@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class Bullet : MonoBehaviour
     public float ColorChangeSpeed=50;
     public GameObject NewEffect,
                                     LeftThings;
+    public WeaponBase.BulletType BulletType;
 
     public string MasterName = "Player";
     public int layer;
@@ -31,36 +33,37 @@ public class Bullet : MonoBehaviour
                 case 1:
                     selfColor= new Color32((byte)255, (byte)0, (byte)0, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
-                    
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
+
                     break;
                 case 2:
                     selfColor=new Color32((byte)255, (byte)255, (byte)0, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 3:
                     selfColor=new Color32((byte)0, (byte)255, (byte)0, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 4:
                     selfColor=new Color32((byte)0, (byte)255, (byte)255, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 5:
                     selfColor=new Color32((byte)0, (byte)0, (byte)255, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
                 case 6:
                     selfColor=new Color32((byte)255, (byte)0, (byte)255, (byte)TransValue);
                     this.transform.GetChild(0).GetComponent<TrailRenderer>().startColor = selfColor;
-                    this.transform.GetComponent<SpriteRenderer>().color = selfColor;
+                    this.transform.GetComponent<SpriteRenderer>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
                     break;
             }
             this.transform.GetChild(0).GetComponent<TrailRenderer>().endColor = selfColor;
+            this.transform.GetChild(1).GetComponent<Light2D>().color = new Color32(selfColor.r, selfColor.g, selfColor.b, 255);
         }
     }
 
