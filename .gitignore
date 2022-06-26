@@ -45,3 +45,15 @@
 /.vs
 /GameJam.sln
 .suo
+/Unity.RenderPipelines.Universal.Editor.csproj
+/Unity.RenderPipelines.Universal.Runtime.csproj
+/Unity.RenderPipelines.Universal.Shaders.csproj
+/Unity.ShaderGraph.Editor.csproj
+/Unity.ShaderGraph.Utilities.csproj
+/Unity.Postprocessing.Editor.csproj
+/Unity.Postprocessing.Runtime.csproj
+/Unity.RenderPipeline.Universal.ShaderLibrary.csproj
+/Unity.RenderPipelines.Core.Editor.csproj
+/Unity.RenderPipelines.Core.Runtime.csproj
+/Unity.RenderPipelines.Core.ShaderLibrary.csproj
+/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.csproj
