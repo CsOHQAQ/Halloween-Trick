@@ -110,6 +110,14 @@ public class MapManager : MonoSingleton<MapManager>
         }
         return null;
     }
+
+    public void ClearAll()
+    {
+        foreach (MapData map in maps)
+        {
+            GameObject.Destroy(map.render.gameObject);
+        }
+    }
 }
 
 public class MapData
