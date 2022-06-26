@@ -56,7 +56,6 @@ public class ChildKing : ChildBase
         {
             collision.GetComponent<Entity>().BeforeDestroy();
             if (animator != null) animator.SetTrigger("IsAttack");
-            animator.SetBool("IsWalk", true);
         }
         else if (collision.gameObject.layer == 8) // 创到玩家 造成DPS的伤害
         {
@@ -64,7 +63,6 @@ public class ChildKing : ChildBase
             {
                 collision.GetComponent<Entity>().Data.CurHealth -= Data.DPS;
                 if (animator != null) animator.SetTrigger("IsAttack");
-                animator.SetBool("IsWalk", true);
             }
         }
     }
