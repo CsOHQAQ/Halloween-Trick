@@ -32,7 +32,7 @@ public class ChildBase : Entity
         // 如果和玩家距离小于等于帧伤攻击距离 对玩家造成帧伤
         if (Vector2.Distance(transform.position, playerPos) <= attackDistance)
         {
-            if (animator != null) animator.SetBool("IsAttack", true);
+            if (animator != null&&animator) animator.SetBool("IsAttack", true);
             EntityManager.Instance.player.Data.CurHealth -= Data.DPS * Time.deltaTime;
         }
         else
